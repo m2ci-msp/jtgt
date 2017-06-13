@@ -136,11 +136,13 @@ public class Tier
      * @param annotation the annotation to add
      */
     public void addAnnotation(Annotation annotation) {
+	_annotations.add(annotation);
+
+
+	// Adapt the end time if adding the annotation implies a change
 	if (getEnd() < annotation.getEnd()) {
 	    setEnd(annotation.getEnd());
 	}
-
-	_annotations.add(annotation);
     }
 
     /**
@@ -149,12 +151,13 @@ public class Tier
      * @param annotations the list of annotations to add
      */
     public void addAnnotations(ArrayList<Annotation> annotations) {
-	Annotation end_it;
+	Annotation end_it = null;
 	for (Annotation an: annotations) {
 	    end_it = an;
 	    _annotations.add(an);
 	}
 
+	// Adapt the end time if adding the annotations implies a change
 	if ((end_it != null) && (getEnd() < end_it.getEnd())) {
 	    setEnd(end_it.getEnd());
 	}
