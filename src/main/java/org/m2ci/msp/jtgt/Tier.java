@@ -3,7 +3,7 @@ package org.m2ci.msp.jtgt;
 import java.util.ArrayList;
 
 /**
- *
+ * A helper class to represent a tier in the textgrid
  *
  * @author <a href="mailto:slemaguer@coli.uni-saarland.de">Sébastien Le Maguer</a>
  */
