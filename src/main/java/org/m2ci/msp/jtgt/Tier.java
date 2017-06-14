@@ -7,7 +7,7 @@ import java.util.ArrayList;
  *
  * @author <a href="mailto:slemaguer@coli.uni-saarland.de">Sébastien Le Maguer</a>
  */
-public class Tier
+public abstract class Tier
 {
     /** List of annotations */
     private ArrayList<Annotation> _annotations;
@@ -31,7 +31,7 @@ public class Tier
      *
      * @param name name of the tier
      */
-    public Tier(String name)
+    protected Tier(String name)
     {
 	setStart(-1);
 	setEnd(-1);
@@ -47,7 +47,7 @@ public class Tier
      * @param end the end time of the tier
      * @param annotations the list of annotations
      */
-    public Tier(String name, double start, double end, ArrayList<Annotation> annotations) {
+    protected Tier(String name, double start, double end, ArrayList<Annotation> annotations) {
 	setName(name);
 	setStart(start);
 	setEnd(end);
