@@ -9,7 +9,16 @@ import java.util.ArrayList;
  */
 public class TextGrid
 {
+    /** The list of tiers composing the textgrid */
     private ArrayList<Tier> _tiers;
+
+    /** Start of the textgrid */
+    private double _start;
+
+    /** End of the textgrid */
+    private double _end;
+
+    /** The filename associated with the textgrid */
     private String _filename;
     /*********************************************************************************************
      ** Accessors
@@ -31,8 +40,42 @@ public class TextGrid
      */
     public TextGrid(String filename)
     {
-	setTiers(new ArrayList<Tier>());
 	setFilename(filename);
+	setStart(-1);
+	setEnd(-1);
+	setTiers(new ArrayList<Tier>());
+    }
+
+
+    /**
+     * Constructor with full informations without the tiers
+     *
+     * @param filename the filename
+     * @param start the start time of the textgrid
+     * @param end the end time of the textgrid
+     */
+    public TextGrid(String filename, double start, double end)
+    {
+	setFilename(filename);
+	setStart(start);
+	setEnd(end);
+	setTiers(new ArrayList<Tier>());
+    }
+
+    /**
+     * Constructor with full informations with the tiers
+     *
+     * @param filename the filename
+     * @param start the start time of the textgrid
+     * @param end the end time of the textgrid
+     * @param tiers the tiers which are going to compose the textgrid
+     */
+    public TextGrid(String filename, double start, double end, ArrayList<Tier> tiers)
+    {
+	setFilename(filename);
+	setStart(start);
+	setEnd(end);
+	setTiers(tiers);
     }
 
     /*********************************************************************************************
@@ -57,6 +100,24 @@ public class TextGrid
     }
 
     /**
+     * Get the start time of the textgrid
+     *
+     * @return the start time of the textgrid
+     */
+    public double getStart() {
+	return _start;
+    }
+
+    /**
+     * Get the end time of the textgrid
+     *
+     * @return the end time of the textgrid
+     */
+    public double getEnd() {
+	return _end;
+    }
+
+    /**
      * Associate the tiers to the textgrid
      *
      * @param tiers the tiers which will compose the textgrid
@@ -72,6 +133,24 @@ public class TextGrid
      */
     public void setFilename(String filename) {
 	this._filename = filename;
+    }
+
+    /**
+     * Set the start time of the textgrid
+     *
+     * @param start the start time of the textgrid
+     */
+    public void setStart(double start) {
+	this._start = start;
+    }
+
+    /**
+     * Set the end time of the textgrid
+     *
+     * @param end the end time of the textgrid
+     */
+    public void setEnd(double end) {
+	this._end = end;
     }
 
     /*********************************************************************************************
