@@ -6,10 +6,15 @@ package org.m2ci.msp.jtgt;
  *
  * @author <a href="mailto:slemaguer@coli.uni-saarland.de">Sébastien Le Maguer</a>
  */
-public class Annotation
+public abstract class Annotation
 {
+    /** The start of the annotation */
     private double _start;
+
+    /** The end of the annotation */
     private double _end;
+
+    /** The text of the annotation */
     private String _text;
 
     /**
@@ -19,7 +24,7 @@ public class Annotation
      * @param end the end of the annotation
      * @param text the annotation label
      */
-    public Annotation(double start, double end, String text)
+    protected Annotation(double start, double end, String text)
     {
 	setStart(start);
 	setEnd(end);
