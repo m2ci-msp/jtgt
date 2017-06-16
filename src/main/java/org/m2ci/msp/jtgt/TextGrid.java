@@ -20,8 +20,9 @@ public class TextGrid
 
     /** The filename associated with the textgrid */
     private String _filename;
+
     /*********************************************************************************************
-     ** Accessors
+     ** Constructors
      *********************************************************************************************/
     /**
      * Default constructor
