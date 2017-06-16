@@ -31,17 +31,17 @@ public class TextGridSerializer
     /******************************************************************************
      ** Importing
      ******************************************************************************/
-    public TextGrid fromString(String str_tgt) {
+    public TextGrid fromString(String str_tgt) throws TextGridIOException {
 	TextGrid tgt = new TextGrid();
 	List<String> lines = Arrays.asList(str_tgt.split(LINE_SEPARATOR));
 	int i = 0;
 
 	if (! lines.remove(0).equals("File type = \"ooTextFile\"")) {
-	    // FIXME: throw an exception that the file is incorrectly formatted
+	    throw new TextGridIOException("Header is not correctly formatted");
 	}
 
 	if (! lines.remove(0).equals("Object class = \"TextGrid\"")) {
-	    // FIXME: throw an exception that the file is incorrectly formatted
+	    throw new TextGridIOException("Header is not correctly formatted");
 	}
 
 
@@ -50,7 +50,7 @@ public class TextGridSerializer
 	    String tmp = lines.remove(0);
 	    Matcher m = PROPERTY_PATTERN.matcher(tmp);
 	    if (!m.find()) {
-		// FIXME: throws an exception
+		throw new TextGridIOException("start line is not correctly formatted");
 	    }
 	    double xmin = Double.parseDouble(m.group(2));
 
@@ -58,7 +58,7 @@ public class TextGridSerializer
 	    tmp = lines.remove(0);
 	    m = PROPERTY_PATTERN.matcher(tmp);
 	    if (!m.find()) {
-		// FIXME: throws an exception
+		throw new TextGridIOException("end line is not correctly formatted");
 	    }
 	    double xmax = Double.parseDouble(m.group(2));
 
@@ -69,7 +69,7 @@ public class TextGridSerializer
 	    tmp = lines.remove(0);
 	    m = PROPERTY_PATTERN.matcher(tmp);
 	    if (!m.find()) {
-		// FIXME: throws an exception
+		throw new TextGridIOException("nb_tiers line is not correctly formatted");
 	    }
 	    int nb_tiers = Integer.parseInt(m.group(2));
 
@@ -78,21 +78,20 @@ public class TextGridSerializer
 
 	    ArrayList<Tier> tiers = readLongTextGrid(lines);
 	    if (tiers.size() != nb_tiers) {
-		// FIXME: throw an exception indicating the inconsistency
+		throw new TextGridIOException("Inconsistency between the number of tiers parsed and the expected number of tiers");
 	    }
 
 	    tgt = new TextGrid(null, xmin, xmax, tiers);
 
 	} else {
-	    // FIXME: throw an exception that short format is not supported yet
+	    throw new TextGridIOException("Short format not supported yet");
 	}
 
 	return tgt;
     }
 
-    public ArrayList<Tier> readLongTextGrid(List<String> lines) {
+    public ArrayList<Tier> readLongTextGrid(List<String> lines) throws TextGridIOException {
 	ArrayList<Tier> tiers = new ArrayList<Tier>();
-
 
 	Matcher m = TIER_PATTERN.matcher(lines.get(0));
 	while (m.find()) {
@@ -103,13 +102,13 @@ public class TextGridSerializer
 	    if (m.find() && ("class".equals(m.group(1)))) {
 		if ("IntervalTier".equals(m.group(2))) {
 		    readLongIntervalTier(lines);
-		} else if ("IntervalTier".equals(m.group(2))) {
+		} else if ("TextTier".equals(m.group(2))) {
 		    readLongPointTier(lines);
 		} else {
-		    // FIXME: throw exception
+		    throw new TextGridIOException("Unknown class of tier");
 		}
 	    } else {
-		// FIXME: throw Exception
+		throw new TextGridIOException("The class of the tier should be defined here");
 	    }
 
 	    m = TIER_PATTERN.matcher(lines.get(0));
@@ -119,7 +118,7 @@ public class TextGridSerializer
 	return tiers;
     }
 
-    public Tier readLongIntervalTier(List<String> lines) {
+    public Tier readLongIntervalTier(List<String> lines) throws TextGridIOException {
 	double start = -1;
 	double end = -1;
 	String name = null;
@@ -139,10 +138,10 @@ public class TextGridSerializer
 		} else if (m.group(1).equals("xmax")) {
 		    end = Double.parseDouble(m.group(2));
 		} else {
-		    // FIXME: throw an Exception
+		    throw new TextGridIOException("Property " + m.group(1) + " is unknown for a tier");
 		}
 	    } else {
-		// FIXME: throw an exception
+		throw new TextGridIOException("A property is expected here");
 	    }
 
 	    m = INTERVAL_PATTERN.matcher(lines.get(0));
@@ -167,7 +166,7 @@ public class TextGridSerializer
 		} else if (m.group(1).equals("xmax")) {
 		    end_an = Double.parseDouble(m.group(2));
 		} else {
-		    // FIXME: throw an Exception
+		    throw new TextGridIOException("Property " + m.group(1) + " is unknown for an annotation");
 		}
 
 		m = PROPERTY_PATTERN.matcher(lines.get(0));
@@ -181,7 +180,7 @@ public class TextGridSerializer
 	return new IntervalTier(name, start, end, annotations);
     }
 
-    public Tier readLongPointTier(List<String> lines) {
+    public Tier readLongPointTier(List<String> lines) throws TextGridIOException {
 		double start = -1;
 	double end = -1;
 	String name = null;
@@ -201,10 +200,10 @@ public class TextGridSerializer
 		} else if (m.group(1).equals("xmax")) {
 		    end = Double.parseDouble(m.group(2));
 		} else {
-		    // FIXME: throw an Exception
+		    throw new TextGridIOException("Property " + m.group(1) + " is unknown for a tier");
 		}
 	    } else {
-		// FIXME: throw an exception
+		throw new TextGridIOException("Expecting a property here");
 	    }
 
 	    m = POINT_PATTERN.matcher(lines.get(0));
@@ -226,7 +225,7 @@ public class TextGridSerializer
 		} else if (m.group(1).equals("number")) {
 		    time = Double.parseDouble(m.group(2));
 		} else {
-		    // FIXME: throw an Exception
+		    throw new TextGridIOException("Property " + m.group(1) + " is unknown for an annotation");
 		}
 
 		m = PROPERTY_PATTERN.matcher(lines.get(0));
@@ -243,7 +242,7 @@ public class TextGridSerializer
     /******************************************************************************
      ** Exporting
      ******************************************************************************/
-    public String toString(TextGrid tgt) {
+    public String toString(TextGrid tgt) throws TextGridIOException {
 
 	String str_tgt = "File type = \"ooTextFile\"" + LINE_SEPARATOR;
 	str_tgt += "Object class = \"TextGrid\"" + LINE_SEPARATOR;
@@ -269,7 +268,7 @@ public class TextGridSerializer
 	    } else if (tier instanceof PointTier) {
 		str_tgt += "\t\tclass = \"TextTier\"" + LINE_SEPARATOR;
 	    } else {
-		// FIXME: throw an exception
+		throw new TextGridIOException(tier.getClass().toString() + " serialization is not supported");
 	    }
 	    str_tgt += "\t\tname = \"" + tier.getName() +  "\"" + LINE_SEPARATOR;
 	    str_tgt += "\t\txmin = " + tier.getStart() + LINE_SEPARATOR;
@@ -300,8 +299,6 @@ public class TextGridSerializer
 
 	return str_tgt;
     }
-
-
 
 }
 
