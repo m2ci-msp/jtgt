@@ -20,10 +20,10 @@ import java.util.regex.Matcher;
 public class TextGridSerializer
 {
     private static final String LINE_SEPARATOR = "\n";
-    private static final Pattern PROPERTY_PATTERN = Pattern.compile("^[\t]*([^ ]*)[^ \t]*=[^ \t]*\"?([^ \t]*)\"?[ \t]*$");
-    private static final Pattern TIER_PATTERN = Pattern.compile("^[\t]*item[^ \t]*=");
-    private static final Pattern INTERVAL_PATTERN = Pattern.compile("^[\t]*intervals[^ \t]*:[^ \t]*size[^ \t]*=[^ \t]*([0-9.]*)");
-    private static final Pattern POINT_PATTERN = Pattern.compile("^[\t]*points ");
+    private static final Pattern PROPERTY_PATTERN = Pattern.compile("^[ \t]*(\\p{Alnum}+)[ \t]*=[ \t]*\"?(\\p{Alnum}*)\"?");
+    private static final Pattern TIER_PATTERN = Pattern.compile("^[ \t]*item[ \t]*\\[[0-9]+\\][ \t]*:.*");
+    private static final Pattern INTERVAL_PATTERN = Pattern.compile("^[ \t]*intervals[ \t]*:[ \t]*size[ \t]*=[ \t]*([0-9]+)");
+    private static final Pattern POINT_PATTERN = Pattern.compile("^[ \t]*points[ \t]*:[ \t]*size[ \t]*=[ \t]*([0-9.]*)");
 
     public TextGridSerializer() {
     }
@@ -33,19 +33,21 @@ public class TextGridSerializer
      ******************************************************************************/
     public TextGrid fromString(String str_tgt) throws TextGridIOException {
 	TextGrid tgt = new TextGrid();
-	List<String> lines = Arrays.asList(str_tgt.split(LINE_SEPARATOR));
+	ArrayList<String> lines = new ArrayList<String>(Arrays.asList(str_tgt.split(LINE_SEPARATOR +"+")));
 	int i = 0;
 
-	if (! lines.remove(0).equals("File type = \"ooTextFile\"")) {
-	    throw new TextGridIOException("Header is not correctly formatted");
+	String tmp_line = lines.remove(0);
+	if (! tmp_line.equals("File type = \"ooTextFile\"")) {
+	    throw new TextGridIOException("Header is not correctly formatted (" + tmp_line + ")");
 	}
 
-	if (! lines.remove(0).equals("Object class = \"TextGrid\"")) {
-	    throw new TextGridIOException("Header is not correctly formatted");
+	tmp_line = lines.remove(0);
+	if (! tmp_line.equals("Object class = \"TextGrid\"")) {
+	    throw new TextGridIOException("Header is not correctly formatted (" + tmp_line + ")");
 	}
 
 
-	if (! lines.get(0).startsWith("xmin")) {
+	if (lines.get(0).startsWith("xmin")) {
 	    // Extract start
 	    String tmp = lines.remove(0);
 	    Matcher m = PROPERTY_PATTERN.matcher(tmp);
@@ -78,13 +80,13 @@ public class TextGridSerializer
 
 	    ArrayList<Tier> tiers = readLongTextGrid(lines);
 	    if (tiers.size() != nb_tiers) {
-		throw new TextGridIOException("Inconsistency between the number of tiers parsed and the expected number of tiers");
+		throw new TextGridIOException("Inconsistency between the number of tiers parsed (" + tiers.size() + ") and the expected number of tiers (" + nb_tiers + ")");
 	    }
 
 	    tgt = new TextGrid(null, xmin, xmax, tiers);
 
 	} else {
-	    throw new TextGridIOException("Short format not supported yet");
+	    throw new TextGridIOException("Short format not supported yet or invalid line: \"" + lines.get(0) + "\"");
 	}
 
 	return tgt;
@@ -92,7 +94,8 @@ public class TextGridSerializer
 
     public ArrayList<Tier> readLongTextGrid(List<String> lines) throws TextGridIOException {
 	ArrayList<Tier> tiers = new ArrayList<Tier>();
-
+	Tier t;
+	System.out.println("line 0 = " + lines.get(0));
 	Matcher m = TIER_PATTERN.matcher(lines.get(0));
 	while (m.find()) {
 	    lines.remove(0);
@@ -101,15 +104,16 @@ public class TextGridSerializer
 	    m = PROPERTY_PATTERN.matcher(lines.remove(0));
 	    if (m.find() && ("class".equals(m.group(1)))) {
 		if ("IntervalTier".equals(m.group(2))) {
-		    readLongIntervalTier(lines);
+		    t = readLongIntervalTier(lines);
 		} else if ("TextTier".equals(m.group(2))) {
-		    readLongPointTier(lines);
+		    t = readLongPointTier(lines);
 		} else {
 		    throw new TextGridIOException("Unknown class of tier");
 		}
 	    } else {
 		throw new TextGridIOException("The class of the tier should be defined here");
 	    }
+	    tiers.add(t);
 
 	    m = TIER_PATTERN.matcher(lines.get(0));
 	}
@@ -127,9 +131,9 @@ public class TextGridSerializer
 	// Tier header
 	Matcher m = INTERVAL_PATTERN.matcher(lines.get(0));
 	while (! m.find()) {
-	    lines.remove(0);
 
-	    m = PROPERTY_PATTERN.matcher(lines.remove(0));
+	    String line = lines.get(0);
+	    m = PROPERTY_PATTERN.matcher(line);
 	    if (m.find()) {
 		if (m.group(1).equals("name")) {
 		    name = m.group(2);
@@ -141,9 +145,12 @@ public class TextGridSerializer
 		    throw new TextGridIOException("Property " + m.group(1) + " is unknown for a tier");
 		}
 	    } else {
-		throw new TextGridIOException("A property is expected here");
+		 m = INTERVAL_PATTERN.matcher(line);
+		 if (! m.find())
+		     throw new TextGridIOException("A property is expected here: " + line);
 	    }
 
+	    lines.remove(0);
 	    m = INTERVAL_PATTERN.matcher(lines.get(0));
 	}
 
@@ -299,7 +306,6 @@ public class TextGridSerializer
 
 	return str_tgt;
     }
-
 }
 
 /* TextGridSerializer.java ends here */
