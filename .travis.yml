@@ -1,0 +1,14 @@
+sudo: false
+
+branches:
+  only:
+    - master
+
+language: java
+install: ./gradlew b
+jdk:
+  - oraclejdk8
+
+cache:
+  directories:
+  - $HOME/.gradle
