@@ -11,8 +11,7 @@ import org.m2ci.msp.jtgt.Annotation;
  *
  * @author <a href="mailto:slemaguer@coli.uni-saarland.de">Sébastien Le Maguer</a>
  */
-public class PointTier extends Tier
-{
+public class PointTier extends Tier {
 
 
     /*********************************************************************************************
@@ -24,9 +23,8 @@ public class PointTier extends Tier
      *
      * @param name name of the tier
      */
-    public PointTier(String name)
-    {
-	super(name);
+    public PointTier(String name) {
+        super(name);
     }
 
     /**
@@ -38,7 +36,7 @@ public class PointTier extends Tier
      * @param annotations the list of annotations
      */
     public PointTier(String name, double start, double end, ArrayList<Annotation> annotations) {
-	super(name, start, end, annotations);
+        super(name, start, end, annotations);
     }
 }
 

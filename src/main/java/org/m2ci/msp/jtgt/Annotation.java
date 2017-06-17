@@ -6,8 +6,7 @@ package org.m2ci.msp.jtgt;
  *
  * @author <a href="mailto:slemaguer@coli.uni-saarland.de">Sébastien Le Maguer</a>
  */
-public abstract class Annotation
-{
+public abstract class Annotation {
     /** The start of the annotation */
     private double _start;
 
@@ -24,11 +23,10 @@ public abstract class Annotation
      * @param end the end of the annotation
      * @param text the annotation label
      */
-    protected Annotation(double start, double end, String text)
-    {
-	setStart(start);
-	setEnd(end);
-	setText(text);
+    protected Annotation(double start, double end, String text) {
+        setStart(start);
+        setEnd(end);
+        setText(text);
     }
 
     /**
@@ -36,9 +34,8 @@ public abstract class Annotation
      *
      * @return the start of the annotation
      */
-    public double getStart()
-    {
-	return _start;
+    public double getStart() {
+        return _start;
     }
 
     /**
@@ -46,9 +43,8 @@ public abstract class Annotation
      *
      * @return the end of the annotation
      */
-    public double getEnd()
-    {
-	return _end;
+    public double getEnd() {
+        return _end;
     }
 
 
@@ -57,9 +53,8 @@ public abstract class Annotation
      *
      * @return the label of the annotation
      */
-    public String getText()
-    {
-	return _text;
+    public String getText() {
+        return _text;
     }
 
     /**
@@ -67,9 +62,8 @@ public abstract class Annotation
      *
      * @param start the new start
      */
-    public void setStart(double start)
-    {
-	_start = start;
+    public void setStart(double start) {
+        _start = start;
     }
 
     /**
@@ -77,9 +71,8 @@ public abstract class Annotation
      *
      * @param end the new end
      */
-    public void setEnd(double end)
-    {
-	_end = end;
+    public void setEnd(double end) {
+        _end = end;
     }
 
     /**
@@ -87,9 +80,8 @@ public abstract class Annotation
      *
      * @param label the new label
      */
-    public void setText(String text)
-    {
-	_text = text;
+    public void setText(String text) {
+        _text = text;
     }
 }
 

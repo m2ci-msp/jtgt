@@ -10,8 +10,7 @@ import org.m2ci.msp.jtgt.Annotation;
  *
  * @author <a href="mailto:slemaguer@coli.uni-saarland.de">Sébastien Le Maguer</a>
  */
-public class IntervalTier extends Tier
-{
+public class IntervalTier extends Tier {
 
     /*********************************************************************************************
      ** Constructors
@@ -22,9 +21,8 @@ public class IntervalTier extends Tier
      *
      * @param name name of the tier
      */
-    public IntervalTier(String name)
-    {
-	super(name);
+    public IntervalTier(String name) {
+        super(name);
     }
 
     /**
@@ -36,7 +34,7 @@ public class IntervalTier extends Tier
      * @param annotations the list of annotations
      */
     public IntervalTier(String name, double start, double end, ArrayList<Annotation> annotations) {
-	super(name, start, end, annotations);
+        super(name, start, end, annotations);
     }
 }
 

@@ -14,3 +14,21 @@ dependencies {
 test {
     useTestNG()
 }
+
+
+
+/**********************************************************************************************
+ ** Formatting part
+***********************************************************************************************/
+task autoFormatCode() {
+    def config = new File("astyle_marytts.conf")
+    inputs.files config
+    outputs.upToDateWhen { false }
+    doLast {
+        fileTree(dir: '.' , include: '**/*.java').each { java_file ->
+            exec {
+                commandLine "astyle", "--options=$config", java_file
+            }
+        }
+    }
+}

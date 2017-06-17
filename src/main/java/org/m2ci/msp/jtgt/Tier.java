@@ -7,8 +7,7 @@ import java.util.ArrayList;
  *
  * @author <a href="mailto:slemaguer@coli.uni-saarland.de">Sébastien Le Maguer</a>
  */
-public abstract class Tier
-{
+public abstract class Tier {
     /** List of annotations */
     private ArrayList<Annotation> _annotations;
 
@@ -31,12 +30,11 @@ public abstract class Tier
      *
      * @param name name of the tier
      */
-    protected Tier(String name)
-    {
-	setStart(-1);
-	setEnd(-1);
-	setName(name);
-	setAnnotations(new ArrayList<Annotation>());
+    protected Tier(String name) {
+        setStart(-1);
+        setEnd(-1);
+        setName(name);
+        setAnnotations(new ArrayList<Annotation>());
     }
 
     /**
@@ -48,10 +46,10 @@ public abstract class Tier
      * @param annotations the list of annotations
      */
     protected Tier(String name, double start, double end, ArrayList<Annotation> annotations) {
-	setName(name);
-	setStart(start);
-	setEnd(end);
-	setAnnotations(annotations);
+        setName(name);
+        setStart(start);
+        setEnd(end);
+        setAnnotations(annotations);
     }
 
     /*********************************************************************************************
@@ -64,7 +62,7 @@ public abstract class Tier
      * @return the start time of the tier
      */
     public double getStart() {
-	return _start;
+        return _start;
     }
 
     /**
@@ -73,7 +71,7 @@ public abstract class Tier
      * @return the end time of the tier
      */
     public double getEnd() {
-	return _end;
+        return _end;
     }
 
     /**
@@ -82,7 +80,7 @@ public abstract class Tier
      * @return the name of the tier
      */
     public String getName() {
-	return _name;
+        return _name;
     }
 
     /**
@@ -91,7 +89,7 @@ public abstract class Tier
      * @return the list of annotations composing the tier
      */
     public ArrayList<Annotation> getAnnotations() {
-	return _annotations;
+        return _annotations;
     }
 
     /**
@@ -100,7 +98,7 @@ public abstract class Tier
      * @param start the start time of the tier
      */
     public void setStart(double start) {
-	this._start = start;
+        this._start = start;
     }
 
     /**
@@ -109,7 +107,7 @@ public abstract class Tier
      * @param end the end time of the tier
      */
     public void setEnd(double end) {
-	this._end = end;
+        this._end = end;
     }
 
     /**
@@ -118,7 +116,7 @@ public abstract class Tier
      * @param start the name of the tier
      */
     public void setName(String name) {
-	this._name = name;
+        this._name = name;
     }
 
     /**
@@ -127,7 +125,7 @@ public abstract class Tier
      * @param annotations the list of annotations composing the tiers
      */
     public void setAnnotations(ArrayList<Annotation> annotations) {
-	this._annotations = annotations;
+        this._annotations = annotations;
     }
 
     /**
@@ -136,13 +134,13 @@ public abstract class Tier
      * @param annotation the annotation to add
      */
     public void addAnnotation(Annotation annotation) {
-	_annotations.add(annotation);
+        _annotations.add(annotation);
 
 
-	// Adapt the end time if adding the annotation implies a change
-	if (getEnd() < annotation.getEnd()) {
-	    setEnd(annotation.getEnd());
-	}
+        // Adapt the end time if adding the annotation implies a change
+        if (getEnd() < annotation.getEnd()) {
+            setEnd(annotation.getEnd());
+        }
     }
 
     /**
@@ -151,16 +149,16 @@ public abstract class Tier
      * @param annotations the list of annotations to add
      */
     public void addAnnotations(ArrayList<Annotation> annotations) {
-	Annotation end_it = null;
-	for (Annotation an: annotations) {
-	    end_it = an;
-	    _annotations.add(an);
-	}
+        Annotation end_it = null;
+        for (Annotation an : annotations) {
+            end_it = an;
+            _annotations.add(an);
+        }
 
-	// Adapt the end time if adding the annotations implies a change
-	if ((end_it != null) && (getEnd() < end_it.getEnd())) {
-	    setEnd(end_it.getEnd());
-	}
+        // Adapt the end time if adding the annotations implies a change
+        if ((end_it != null) && (getEnd() < end_it.getEnd())) {
+            setEnd(end_it.getEnd());
+        }
     }
 }
 

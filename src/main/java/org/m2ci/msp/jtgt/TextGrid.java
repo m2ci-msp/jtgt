@@ -7,8 +7,7 @@ import java.util.ArrayList;
  *
  * @author <a href="mailto:slemaguer@coli.uni-saarland.de">Sébastien Le Maguer</a>
  */
-public class TextGrid
-{
+public class TextGrid {
     /** The list of tiers composing the textgrid */
     private ArrayList<Tier> _tiers;
 
@@ -28,10 +27,9 @@ public class TextGrid
      * Default constructor
      *
      */
-    public TextGrid()
-    {
-	setTiers(new ArrayList<Tier>());
-	setFilename(null);
+    public TextGrid() {
+        setTiers(new ArrayList<Tier>());
+        setFilename(null);
     }
 
     /**
@@ -39,12 +37,11 @@ public class TextGrid
      *
      * @param filename the filename
      */
-    public TextGrid(String filename)
-    {
-	setFilename(filename);
-	setStart(-1);
-	setEnd(-1);
-	setTiers(new ArrayList<Tier>());
+    public TextGrid(String filename) {
+        setFilename(filename);
+        setStart(-1);
+        setEnd(-1);
+        setTiers(new ArrayList<Tier>());
     }
 
 
@@ -55,12 +52,11 @@ public class TextGrid
      * @param start the start time of the textgrid
      * @param end the end time of the textgrid
      */
-    public TextGrid(String filename, double start, double end)
-    {
-	setFilename(filename);
-	setStart(start);
-	setEnd(end);
-	setTiers(new ArrayList<Tier>());
+    public TextGrid(String filename, double start, double end) {
+        setFilename(filename);
+        setStart(start);
+        setEnd(end);
+        setTiers(new ArrayList<Tier>());
     }
 
     /**
@@ -71,12 +67,11 @@ public class TextGrid
      * @param end the end time of the textgrid
      * @param tiers the tiers which are going to compose the textgrid
      */
-    public TextGrid(String filename, double start, double end, ArrayList<Tier> tiers)
-    {
-	setFilename(filename);
-	setStart(start);
-	setEnd(end);
-	setTiers(tiers);
+    public TextGrid(String filename, double start, double end, ArrayList<Tier> tiers) {
+        setFilename(filename);
+        setStart(start);
+        setEnd(end);
+        setTiers(tiers);
     }
 
     /*********************************************************************************************
@@ -88,7 +83,7 @@ public class TextGrid
      * @return the list of tiers
      */
     public ArrayList<Tier> getTiers() {
-	return _tiers;
+        return _tiers;
     }
 
     /**
@@ -97,7 +92,7 @@ public class TextGrid
      * @return the filename
      */
     public String getFilename() {
-	return _filename;
+        return _filename;
     }
 
     /**
@@ -106,7 +101,7 @@ public class TextGrid
      * @return the start time of the textgrid
      */
     public double getStart() {
-	return _start;
+        return _start;
     }
 
     /**
@@ -115,7 +110,7 @@ public class TextGrid
      * @return the end time of the textgrid
      */
     public double getEnd() {
-	return _end;
+        return _end;
     }
 
     /**
@@ -124,7 +119,7 @@ public class TextGrid
      * @param tiers the tiers which will compose the textgrid
      */
     public void setTiers(ArrayList<Tier> tiers) {
-	this._tiers = tiers;
+        this._tiers = tiers;
     }
 
     /**
@@ -133,7 +128,7 @@ public class TextGrid
      * @param filename the filename associated to the textgrid
      */
     public void setFilename(String filename) {
-	this._filename = filename;
+        this._filename = filename;
     }
 
     /**
@@ -142,7 +137,7 @@ public class TextGrid
      * @param start the start time of the textgrid
      */
     public void setStart(double start) {
-	this._start = start;
+        this._start = start;
     }
 
     /**
@@ -151,7 +146,7 @@ public class TextGrid
      * @param end the end time of the textgrid
      */
     public void setEnd(double end) {
-	this._end = end;
+        this._end = end;
     }
 
     /*********************************************************************************************
@@ -165,10 +160,11 @@ public class TextGrid
      * @param position the position to add the tier in
      */
     public void addTier(Tier tier, int position) {
-	if (position < 0)
-	    getTiers().add(tier);
-	else
-	    getTiers().add(position, tier);
+        if (position < 0) {
+            getTiers().add(tier);
+        } else {
+            getTiers().add(position, tier);
+        }
 
     }
 
@@ -178,7 +174,7 @@ public class TextGrid
      * @param tier the tier to add
      */
     public void addTier(Tier tier) {
-	addTier(tier, getTiers().size()-1);
+        addTier(tier, getTiers().size() - 1);
     }
 
     /**
@@ -186,11 +182,10 @@ public class TextGrid
      *
      * @param tiers the tier list
      */
-    public void addTiers(ArrayList<Tier> tiers)
-    {
-	for (Tier tier: tiers) {
-	    addTier(tier);
-	}
+    public void addTiers(ArrayList<Tier> tiers) {
+        for (Tier tier : tiers) {
+            addTier(tier);
+        }
     }
 
     /*********************************************************************************************
@@ -202,17 +197,19 @@ public class TextGrid
      * @param name the name of the tier
      */
     public void deleteTier(String name) {
-	int pos = -1;
-	int i = 0;
-	while ((i<getTiers().size()) && (pos < 0)) {
-	    if (getTiers().get(i).getName().equals(name))
-		pos = i;
+        int pos = -1;
+        int i = 0;
+        while ((i < getTiers().size()) && (pos < 0)) {
+            if (getTiers().get(i).getName().equals(name)) {
+                pos = i;
+            }
 
-	    i++;
-	}
+            i++;
+        }
 
-	if (pos >= 0)
-	    deleteTier(pos);
+        if (pos >= 0) {
+            deleteTier(pos);
+        }
     }
 
     /**
@@ -221,7 +218,7 @@ public class TextGrid
      * @param position the given position
      */
     public void deleteTier(int position) {
-	getTiers().remove(position);
+        getTiers().remove(position);
     }
 }
 
