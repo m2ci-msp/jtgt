@@ -338,6 +338,26 @@ public class TextGridSerializer
 	return str_tgt;
     }
 
+
+    public void save(TextGrid tgt, File output_file) throws IOException {
+	IOException ex = null;
+	BufferedWriter writer = null;
+
+	try {
+	    writer = new BufferedWriter(new FileWriter(output_file));
+	    writer.write(toString(tgt));
+	} catch (IOException ex_tmp) {
+	    ex = ex_tmp;
+	} finally {
+	    try {
+		writer.close();
+	    } catch (IOException useless) {
+	    }
+	}
+
+	if (ex != null)
+	    throw ex;
+    }
 }
 
 /* TextGridSerializer.java ends here */
