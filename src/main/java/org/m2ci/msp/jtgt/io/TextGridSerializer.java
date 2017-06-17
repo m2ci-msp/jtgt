@@ -20,9 +20,10 @@ import java.util.regex.Matcher;
 public class TextGridSerializer
 {
     private static final String LINE_SEPARATOR = "\n";
-    private static final Pattern PROPERTY_PATTERN = Pattern.compile("^[ \t]*(\\p{Alnum}+)[ \t]*=[ \t]*\"?(\\p{Alnum}*)\"?");
+    private static final Pattern PROPERTY_PATTERN = Pattern.compile("^[ \t]*(\\p{Alnum}+)[ \t]*=[ \t]*\"?([^\"]*)\"?");
     private static final Pattern TIER_PATTERN = Pattern.compile("^[ \t]*item[ \t]*\\[[0-9]+\\][ \t]*:.*");
-    private static final Pattern INTERVAL_PATTERN = Pattern.compile("^[ \t]*intervals[ \t]*:[ \t]*size[ \t]*=[ \t]*([0-9]+)");
+    private static final Pattern INTERVALS_PATTERN = Pattern.compile("^[ \t]*intervals[ \t]*:[ \t]*size[ \t]*=[ \t]*([0-9]+)");
+    private static final Pattern INTERVAL_ITEM_PATTERN = Pattern.compile("^[ \t]*intervals[ \t]*\\[[0-9]+\\][ \t]*:.*");
     private static final Pattern POINT_PATTERN = Pattern.compile("^[ \t]*points[ \t]*:[ \t]*size[ \t]*=[ \t]*([0-9.]*)");
 
     public TextGridSerializer() {
@@ -95,7 +96,6 @@ public class TextGridSerializer
     public ArrayList<Tier> readLongTextGrid(List<String> lines) throws TextGridIOException {
 	ArrayList<Tier> tiers = new ArrayList<Tier>();
 	Tier t;
-	System.out.println("line 0 = " + lines.get(0));
 	Matcher m = TIER_PATTERN.matcher(lines.get(0));
 	while (m.find()) {
 	    lines.remove(0);
@@ -115,6 +115,10 @@ public class TextGridSerializer
 	    }
 	    tiers.add(t);
 
+
+	    if (lines.size() == 0)
+		break;
+
 	    m = TIER_PATTERN.matcher(lines.get(0));
 	}
 
@@ -129,7 +133,7 @@ public class TextGridSerializer
 	String type = null;
 
 	// Tier header
-	Matcher m = INTERVAL_PATTERN.matcher(lines.get(0));
+	Matcher m = INTERVALS_PATTERN.matcher(lines.get(0));
 	while (! m.find()) {
 
 	    String line = lines.get(0);
@@ -145,18 +149,20 @@ public class TextGridSerializer
 		    throw new TextGridIOException("Property " + m.group(1) + " is unknown for a tier");
 		}
 	    } else {
-		 m = INTERVAL_PATTERN.matcher(line);
+		 m = INTERVALS_PATTERN.matcher(line);
 		 if (! m.find())
 		     throw new TextGridIOException("A property is expected here: " + line);
 	    }
 
 	    lines.remove(0);
-	    m = INTERVAL_PATTERN.matcher(lines.get(0));
+	    m = INTERVALS_PATTERN.matcher(lines.get(0));
 	}
 
 
 
 	ArrayList<Annotation> annotations = new ArrayList<Annotation>();
+	lines.remove(0);
+	m = INTERVAL_ITEM_PATTERN.matcher(lines.get(0));
 	while (m.find()) {
 	    lines.remove(0);
 	    double start_an = -1;
@@ -176,12 +182,19 @@ public class TextGridSerializer
 		    throw new TextGridIOException("Property " + m.group(1) + " is unknown for an annotation");
 		}
 
+		if (lines.size() == 0)
+		    break;
+
 		m = PROPERTY_PATTERN.matcher(lines.get(0));
 	    }
 
 	    Annotation annotation = new IntervalAnnotation(start_an, end_an, text);
 	    annotations.add(annotation);
-	    m = INTERVAL_PATTERN.matcher(lines.get(0));
+
+	    if (lines.size() == 0)
+		break;
+
+	    m = INTERVAL_ITEM_PATTERN.matcher(lines.get(0));
 	}
 
 	return new IntervalTier(name, start, end, annotations);
@@ -268,7 +281,7 @@ public class TextGridSerializer
 	    // Get the current tier
 	    Tier tier = tiers.get(t);
 
-	    str_tgt += "\titem[" + (t+1) + "]" + LINE_SEPARATOR;
+	    str_tgt += "\titem [" + (t+1) + "]:" + LINE_SEPARATOR;
 
 	    if (tier instanceof IntervalTier) {
 		str_tgt += "\t\tclass = \"IntervalTier\"" + LINE_SEPARATOR;
@@ -289,17 +302,17 @@ public class TextGridSerializer
 	    if (tier instanceof IntervalTier) {
 		for (int a=0; a<annotations.size(); a++) {
 		    IntervalAnnotation an = (IntervalAnnotation) annotations.get(a);
-		    str_tgt += "\t\t\tintervals [" + (a+1) + "]";
+		    str_tgt += "\t\t\tintervals [" + (a+1) + "]:" + LINE_SEPARATOR;
 		    str_tgt += "\t\t\t\txmin = " + an.getStart() + LINE_SEPARATOR;
 		    str_tgt += "\t\t\t\txmax = " + an.getEnd() + LINE_SEPARATOR;
-		    str_tgt += "\t\t\t\ttext = " + an.getText() + LINE_SEPARATOR;
+		    str_tgt += "\t\t\t\ttext = \"" + an.getText() + "\"" + LINE_SEPARATOR;
 		}
 	    } else if (tier instanceof PointTier) { //
 		for (int a=0; a<annotations.size(); a++) {
 		    PointAnnotation an = (PointAnnotation) annotations.get(a);
-		    str_tgt += "\t\t\tpoints [" + (a+1) + "]";
+		    str_tgt += "\t\t\tpoints [" + (a+1) + "]:" + LINE_SEPARATOR;
 		    str_tgt += "\t\t\t\tnumber = " + an.getTime() + LINE_SEPARATOR;
-		    str_tgt += "\t\t\t\tmark = " + an.getText() + LINE_SEPARATOR;
+		    str_tgt += "\t\t\t\tmark = \"" + an.getText() + "\"" + LINE_SEPARATOR;
 		}
 	    }
 	}
