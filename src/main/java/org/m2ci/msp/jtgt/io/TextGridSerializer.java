@@ -3,8 +3,13 @@ package org.m2ci.msp.jtgt.io;
 import org.m2ci.msp.jtgt.*;
 import org.m2ci.msp.jtgt.tier.*;
 import org.m2ci.msp.jtgt.annotation.*;
+import java.io.IOException;
+
 
 import java.io.File;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
@@ -24,7 +29,8 @@ public class TextGridSerializer
     private static final Pattern TIER_PATTERN = Pattern.compile("^[ \t]*item[ \t]*\\[[0-9]+\\][ \t]*:.*");
     private static final Pattern INTERVALS_PATTERN = Pattern.compile("^[ \t]*intervals[ \t]*:[ \t]*size[ \t]*=[ \t]*([0-9]+)");
     private static final Pattern INTERVAL_ITEM_PATTERN = Pattern.compile("^[ \t]*intervals[ \t]*\\[[0-9]+\\][ \t]*:.*");
-    private static final Pattern POINT_PATTERN = Pattern.compile("^[ \t]*points[ \t]*:[ \t]*size[ \t]*=[ \t]*([0-9.]*)");
+    private static final Pattern POINTS_PATTERN = Pattern.compile("^[ \t]*points[ \t]*:[ \t]*size[ \t]*=[ \t]*([0-9]+)");
+    private static final Pattern POINT_ITEM_PATTERN = Pattern.compile("^[ \t]*points[ \t]*\\[[0-9]+\\][ \t]*:.*");
 
     public TextGridSerializer() {
     }
@@ -149,9 +155,9 @@ public class TextGridSerializer
 		    throw new TextGridIOException("Property " + m.group(1) + " is unknown for a tier");
 		}
 	    } else {
-		 m = INTERVALS_PATTERN.matcher(line);
-		 if (! m.find())
-		     throw new TextGridIOException("A property is expected here: " + line);
+		m = INTERVALS_PATTERN.matcher(line);
+		if (! m.find())
+		    throw new TextGridIOException("A property is expected here: " + line);
 	    }
 
 	    lines.remove(0);
@@ -201,17 +207,17 @@ public class TextGridSerializer
     }
 
     public Tier readLongPointTier(List<String> lines) throws TextGridIOException {
-		double start = -1;
+	double start = -1;
 	double end = -1;
 	String name = null;
 	String type = null;
 
 	// Tier header
-	Matcher m = POINT_PATTERN.matcher(lines.get(0));
+	Matcher m = POINTS_PATTERN.matcher(lines.get(0));
 	while (! m.find()) {
-	    lines.remove(0);
 
-	    m = PROPERTY_PATTERN.matcher(lines.remove(0));
+	    String line = lines.get(0);
+	    m = PROPERTY_PATTERN.matcher(line);
 	    if (m.find()) {
 		if (m.group(1).equals("name")) {
 		    name = m.group(2);
@@ -223,15 +229,20 @@ public class TextGridSerializer
 		    throw new TextGridIOException("Property " + m.group(1) + " is unknown for a tier");
 		}
 	    } else {
-		throw new TextGridIOException("Expecting a property here");
+		m = POINTS_PATTERN.matcher(line);
+		if (! m.find())
+		    throw new TextGridIOException("A property is expected here: " + line);
 	    }
 
-	    m = POINT_PATTERN.matcher(lines.get(0));
+	    lines.remove(0);
+	    m = POINTS_PATTERN.matcher(lines.get(0));
 	}
 
 
 
 	ArrayList<Annotation> annotations = new ArrayList<Annotation>();
+	lines.remove(0);
+	m = POINT_ITEM_PATTERN.matcher(lines.get(0));
 	while (m.find()) {
 	    lines.remove(0);
 	    double time = -1;
@@ -248,12 +259,19 @@ public class TextGridSerializer
 		    throw new TextGridIOException("Property " + m.group(1) + " is unknown for an annotation");
 		}
 
+		if (lines.size() == 0)
+		    break;
+
 		m = PROPERTY_PATTERN.matcher(lines.get(0));
 	    }
 
 	    Annotation annotation = new PointAnnotation(time, text);
 	    annotations.add(annotation);
-	    m = POINT_PATTERN.matcher(lines.get(0));
+
+	    if (lines.size() == 0)
+		break;
+
+	    m = POINT_ITEM_PATTERN.matcher(lines.get(0));
 	}
 
 	return new PointTier(name, start, end, annotations);
@@ -319,6 +337,7 @@ public class TextGridSerializer
 
 	return str_tgt;
     }
+
 }
 
 /* TextGridSerializer.java ends here */
