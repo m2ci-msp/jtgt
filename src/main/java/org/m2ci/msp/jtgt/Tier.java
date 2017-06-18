@@ -113,7 +113,7 @@ public abstract class Tier {
     /**
      * Set the name of the tier
      *
-     * @param start the name of the tier
+     * @param name the name of the tier
      */
     public void setName(String name) {
         this._name = name;

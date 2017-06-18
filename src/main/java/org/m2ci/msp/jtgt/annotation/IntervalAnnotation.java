@@ -3,7 +3,7 @@ package org.m2ci.msp.jtgt.annotation;
 import org.m2ci.msp.jtgt.Annotation;
 
 /**
- *
+ * Interval annotation wrapper class
  *
  * @author <a href="mailto:slemaguer@coli.uni-saarland.de">Sébastien Le Maguer</a>
  */

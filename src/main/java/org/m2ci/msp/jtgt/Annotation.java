@@ -78,7 +78,7 @@ public abstract class Annotation {
     /**
      * Define the label of the annotation
      *
-     * @param label the new label
+     * @param text the new label
      */
     public void setText(String text) {
         _text = text;

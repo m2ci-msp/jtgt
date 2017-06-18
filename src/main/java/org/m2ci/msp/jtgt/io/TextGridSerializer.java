@@ -23,20 +23,44 @@ import java.util.regex.Matcher;
  * @author <a href="mailto:slemaguer@coli.uni-saarland.de">Sébastien Le Maguer</a>
  */
 public class TextGridSerializer {
+    /** A line separator wrapper */
     private static final String LINE_SEPARATOR = "\n";
+
+    /** The property pattern to extract its name and its value in 2 groups */
     private static final Pattern PROPERTY_PATTERN = Pattern.compile("^[ \t]*(\\p{Alnum}+)[ \t]*=[ \t]*\"?([^\"]*)\"?");
+
+    /** The tier pattern */
     private static final Pattern TIER_PATTERN = Pattern.compile("^[ \t]*item[ \t]*\\[[0-9]+\\][ \t]*:.*");
+
+    /** Start of interval annotation list pattern */
     private static final Pattern INTERVALS_PATTERN = Pattern.compile("^[ \t]*intervals[ \t]*:[ \t]*size[ \t]*=[ \t]*([0-9]+)");
+
+    /** Start of interval annotation item pattern */
     private static final Pattern INTERVAL_ITEM_PATTERN = Pattern.compile("^[ \t]*intervals[ \t]*\\[[0-9]+\\][ \t]*:.*");
+
+    /** Start of point annotation list pattern */
     private static final Pattern POINTS_PATTERN = Pattern.compile("^[ \t]*points[ \t]*:[ \t]*size[ \t]*=[ \t]*([0-9]+)");
+
+    /** Start of point annotation item pattern */
     private static final Pattern POINT_ITEM_PATTERN = Pattern.compile("^[ \t]*points[ \t]*\\[[0-9]+\\][ \t]*:.*");
 
+    /**
+     * Default constructor
+     *
+     */
     public TextGridSerializer() {
     }
 
     /******************************************************************************
      ** Importing
      ******************************************************************************/
+    /**
+     * Load the string formatted textgrid. Only long format supported for no
+     *
+     * @param str_tgt the textgrid in a string format
+     * @return Textgrid the loaded textgrid object
+     * @throws TextGridIOException if a problem occurs. See message for more explanation
+     */
     public TextGrid fromString(String str_tgt) throws TextGridIOException {
         TextGrid tgt = new TextGrid();
         ArrayList<String> lines = new ArrayList<String>(Arrays.asList(str_tgt.split(LINE_SEPARATOR + "+")));
@@ -99,6 +123,13 @@ public class TextGridSerializer {
         return tgt;
     }
 
+    /**
+     * Parsing the content of the textgrid (header should be already stripped)
+     *
+     * @param lines the list of remaining lines to analyze
+     * @return the list of loaded tiers
+     * @throws TextGridIOException if a problem occurs. See message for more explanation
+     */
     public ArrayList<Tier> readLongTextGrid(List<String> lines) throws TextGridIOException {
         ArrayList<Tier> tiers = new ArrayList<Tier>();
         Tier t;
@@ -133,6 +164,13 @@ public class TextGridSerializer {
         return tiers;
     }
 
+    /**
+     * Helper method to extract an interval tier in a long format
+     *
+     * @param lines the list of remaining lines to analyze
+     * @return the loaded tier
+     * @throws TextGridIOException if a problem occurs. See message for more explanation
+     */
     public Tier readLongIntervalTier(List<String> lines) throws TextGridIOException {
         double start = -1;
         double end = -1;
@@ -210,6 +248,13 @@ public class TextGridSerializer {
         return new IntervalTier(name, start, end, annotations);
     }
 
+    /**
+     * Helper method to extract a point tier in a long format
+     *
+     * @param lines the list of remaining lines to analyze
+     * @return the loaded tier
+     * @throws TextGridIOException if a problem occurs. See message for more explanation
+     */
     public Tier readLongPointTier(List<String> lines) throws TextGridIOException {
         double start = -1;
         double end = -1;
@@ -242,8 +287,6 @@ public class TextGridSerializer {
             lines.remove(0);
             m = POINTS_PATTERN.matcher(lines.get(0));
         }
-
-
 
         ArrayList<Annotation> annotations = new ArrayList<Annotation>();
         lines.remove(0);
@@ -287,6 +330,14 @@ public class TextGridSerializer {
     /******************************************************************************
      ** Exporting
      ******************************************************************************/
+    /**
+     * Export the given textgrid to a properly formatted String.
+     * Only long format is supported for now
+     *
+     * @param tgt the textgrid to export
+     * @return String the formatted textgrid
+     * @throws TextGridIOException if a problem occurs. See message for more explanation
+     */
     public String toString(TextGrid tgt) throws TextGridIOException {
 
         String str_tgt = "File type = \"ooTextFile\"" + LINE_SEPARATOR;
@@ -346,6 +397,14 @@ public class TextGridSerializer {
     }
 
 
+    /**
+     * Save the textgrid to a file
+     * Only long format is supported for now
+     *
+     * @param tgt the textgrid to export
+     * @param output_file the file which is going to contain the formatted textgrid
+     * @throws IOException if a problem occurs and more specifically a TextGridIOException if it is relating to the formatting.
+     */
     public void save(TextGrid tgt, File output_file) throws IOException {
         IOException ex = null;
         BufferedWriter writer = null;
