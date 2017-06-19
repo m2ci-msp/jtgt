@@ -2,7 +2,7 @@
 
 # JTGT
 
-JTGT is a portage of the TextGrid Tools python library into java. Original TextGridTools can be find here: https://github.com/hbuschme/TextGridTools
+JTGT is a porting of the TextGrid Tools python library into java. Original TextGridTools can be find here: https://github.com/hbuschme/TextGridTools
 
 ## Adding JTGT to your dependencies
 
