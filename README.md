@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/m2ci-msp/jtgt.svg?branch=master)](https://travis-ci.org/m2ci-msp/jtgt)
+[![Build Status](https://travis-ci.org/marytts/jtgt.svg?branch=master)](https://travis-ci.org/m2ci-msp/jtgt)
+[![Bintray](https://img.shields.io/bintray/v/m2ci-msp/maven/jtgt.svg)](https://bintray.com/m2ci-msp/maven/jtgt)
 
 # JTGT
 
