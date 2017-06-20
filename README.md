@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/marytts/jtgt.svg?branch=master)](https://travis-ci.org/marytts/marytts)
-[![Bintray](https://img.shields.io/bintray/v/m2ci-msp/maven/jtgt.svg?maxAge=2592000)](https://bintray.com/blocke/releases/scalajack)
+[![Build Status](https://travis-ci.org/marytts/jtgt.svg?branch=master)](https://travis-ci.org/m2ci-msp/jtgt)
+[![Bintray](https://img.shields.io/bintray/v/m2ci-msp/maven/jtgt.svg)](https://bintray.com/m2ci-msp/maven/jtgt)
 
 # JTGT
 
