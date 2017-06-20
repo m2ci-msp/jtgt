@@ -39,6 +39,7 @@ task autoFormatCode() {
 ***********************************************************************************************/
 version '0.5'
 group "org.m2ci.msp"
+description "Java TextGrid Tools porting"
 
 task sourceJar(type: Jar) {
     from sourceSets.main.allJava
@@ -49,7 +50,19 @@ publishing {
         mavenJava(MavenPublication) {
             from components.java
             artifact sourceJar {
-                classifier "sources"
+                classifier 'sources'
+            }
+        }
+    }
+    repositories {
+        maven {
+            url "$rootProject.buildDir/repo"
+        }
+        maven {
+            url version.endsWith('-SNAPSHOT') ? 'https://oss.jfrog.org/artifactory/oss-snapshot-local' : 'https://api.bintray.com/maven/m2ci-msp/maven/jtgt'
+            credentials {
+                username = findProperty('bintrayUser')
+                password = findProperty('bintrayApiKey')
             }
         }
     }
