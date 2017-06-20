@@ -2,6 +2,10 @@ apply plugin: 'java'
 apply plugin: 'java-library'
 apply plugin: 'maven-publish'
 
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
 repositories {
     jcenter()
 }
@@ -13,6 +17,8 @@ dependencies {
 test {
     useTestNG()
 }
+
+
 
 
 
