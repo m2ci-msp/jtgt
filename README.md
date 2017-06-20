@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/marytts/jtgt.svg?branch=master)](https://travis-ci.org/marytts/marytts)
+[![Build Status](https://travis-ci.org/m2ci-msp/jtgt.svg?branch=master)](https://travis-ci.org/m2ci-msp/jtgt)
 
 # JTGT
 
