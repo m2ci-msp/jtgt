@@ -5,7 +5,6 @@ branches:
     - master
 
 language: java
-install: ./gradlew b
 jdk:
   - openjdk7
   - oraclejdk7
