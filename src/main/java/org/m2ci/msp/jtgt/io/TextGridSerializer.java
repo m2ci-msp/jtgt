@@ -55,10 +55,10 @@ public class TextGridSerializer {
      ** Importing
      ******************************************************************************/
     /**
-     * Load the string formatted textgrid. Only long format supported for no
+     * Load the string formatted textgrid. Only long format supported for now
      *
      * @param str_tgt the textgrid in a string format
-     * @return Textgrid the loaded textgrid object
+     * @return the loaded textgrid object
      * @throws TextGridIOException if a problem occurs. See message for more explanation
      */
     public TextGrid fromString(String str_tgt) throws TextGridIOException {
@@ -335,7 +335,7 @@ public class TextGridSerializer {
      * Only long format is supported for now
      *
      * @param tgt the textgrid to export
-     * @return String the formatted textgrid
+     * @return the formatted textgrid
      * @throws TextGridIOException if a problem occurs. See message for more explanation
      */
     public String toString(TextGrid tgt) throws TextGridIOException {
