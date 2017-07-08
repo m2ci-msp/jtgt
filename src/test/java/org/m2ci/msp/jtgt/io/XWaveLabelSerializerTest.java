@@ -20,8 +20,8 @@ public class XWaveLabelSerializerTest {
 
     @Test(expectedExceptions = UnsupportedOperationException.class)
     public void testImportXWaveLabel() throws TextGridIOException {
-	XWaveLabelSerializer xwave_ser = new XWaveLabelSerializer();
-	TextGrid tg = xwave_ser.fromString("undefined");
+        XWaveLabelSerializer xwave_ser = new XWaveLabelSerializer();
+        TextGrid tg = xwave_ser.fromString("undefined");
     }
 
     @Test
@@ -34,10 +34,10 @@ public class XWaveLabelSerializerTest {
         TextGridSerializer tgs = new TextGridSerializer();
         TextGrid tg = tgs.fromString(string_input);
 
-	XWaveLabelSerializer xwave_ser = new XWaveLabelSerializer();
-	String xlab_pred = xwave_ser.toString(tg, "phones");
+        XWaveLabelSerializer xwave_ser = new XWaveLabelSerializer();
+        String xlab_pred = xwave_ser.toString(tg, "phones");
 
-	// Load the checked version
+        // Load the checked version
         String validated_resource_name = "arctic_a0001.xlab";
         InputStream validated = this.getClass().getResourceAsStream(validated_resource_name);
         String xlab_validated = new Scanner(validated, "UTF-8").useDelimiter("\\A").next();

@@ -174,7 +174,7 @@ public class TextGrid {
      * @param tier the tier to add
      */
     public void addTier(Tier tier) {
-	getTiers().add(tier);
+        getTiers().add(tier);
     }
 
     /**

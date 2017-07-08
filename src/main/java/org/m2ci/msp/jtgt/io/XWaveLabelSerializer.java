@@ -45,7 +45,7 @@ public class XWaveLabelSerializer {
      * @throws UnsupportedOperationException as this is not supported yet
      */
     public TextGrid fromString(String str_tgt) throws TextGridIOException {
-	throw new UnsupportedOperationException("You can't import from a Xwave label formatted file");
+        throw new UnsupportedOperationException("You can't import from a Xwave label formatted file");
     }
 
     /******************************************************************************
@@ -67,30 +67,32 @@ public class XWaveLabelSerializer {
 
         // Find the accurate tier to export
         ArrayList<Tier> tiers = tgt.getTiers();
-	Tier tier = null;
-	int t=0;
-	boolean found = false;
-	while ((t < tiers.size()) && (! found)) {
-	    tier = tiers.get(t);
-	    if (tier_name.equals(tier.getName()))
-		found = true;
+        Tier tier = null;
+        int t = 0;
+        boolean found = false;
+        while ((t < tiers.size()) && (! found)) {
+            tier = tiers.get(t);
+            if (tier_name.equals(tier.getName())) {
+                found = true;
+            }
 
-	    t++;
-	}
+            t++;
+        }
 
-	if (! found)
-	    throw new TextGridIOException("Cannot find the tier \"" + tier_name + "in the textgrid\"");
+        if (! found) {
+            throw new TextGridIOException("Cannot find the tier \"" + tier_name + "in the textgrid\"");
+        }
 
-	// Each annotations
-	if (tier instanceof IntervalTier) {
-	    ArrayList<Annotation> annotations = tier.getAnnotations();
-	    for (int a = 0; a < annotations.size(); a++) {
-		IntervalAnnotation an = (IntervalAnnotation) annotations.get(a);
-		str_xwav_lab += "\t" + an.getEnd() + " -1 " + an.getText() + LINE_SEPARATOR;
-	    }
-	} else {
-	    throw new TextGridIOException("Don't know how to serialize anaything execpt an IntervalTier");
-	}
+        // Each annotations
+        if (tier instanceof IntervalTier) {
+            ArrayList<Annotation> annotations = tier.getAnnotations();
+            for (int a = 0; a < annotations.size(); a++) {
+                IntervalAnnotation an = (IntervalAnnotation) annotations.get(a);
+                str_xwav_lab += "\t" + an.getEnd() + " -1 " + an.getText() + LINE_SEPARATOR;
+            }
+        } else {
+            throw new TextGridIOException("Don't know how to serialize anaything execpt an IntervalTier");
+        }
 
         return str_xwav_lab;
     }
