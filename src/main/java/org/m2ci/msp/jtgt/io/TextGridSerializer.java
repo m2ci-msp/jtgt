@@ -264,8 +264,8 @@ public class TextGridSerializer {
         // Tier header
         Matcher m = POINTS_PATTERN.matcher(lines.get(0));
         while (! m.find()) {
-
             String line = lines.get(0);
+
             m = PROPERTY_PATTERN.matcher(line);
             if (m.find()) {
                 if (m.group(1).equals("name")) {
@@ -372,7 +372,12 @@ public class TextGridSerializer {
 
 
             ArrayList<Annotation> annotations = tier.getAnnotations();
-            str_tgt += "\t\tintervals: size = " + annotations.size() + LINE_SEPARATOR;
+
+            if (tier instanceof IntervalTier) {
+		str_tgt += "\t\tintervals: size = " + annotations.size() + LINE_SEPARATOR;
+            } else if (tier instanceof PointTier) {
+		str_tgt += "\t\tpoints: size = " + annotations.size() + LINE_SEPARATOR;
+	    }
 
             // Each annotations
             if (tier instanceof IntervalTier) {
