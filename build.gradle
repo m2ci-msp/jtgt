@@ -1,7 +1,11 @@
-apply plugin: 'java'
-apply plugin: 'java-library'
-apply plugin: 'maven-publish'
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
 
+version '0.6-SNAPSHOT'
+group "org.m2ci.msp"
+description "Java TextGrid Tools porting"
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
@@ -18,19 +22,16 @@ test {
     useTestNG()
 }
 
-
-
-
-
 /**********************************************************************************************
  ** Formatting part
-***********************************************************************************************/
+ **********************************************************************************************/
+
 task autoFormatCode() {
-    def config = new File("astyle_marytts.conf")
+    def config = file("astyle_marytts.conf")
     inputs.files config
     outputs.upToDateWhen { false }
     doLast {
-        fileTree(dir: '.' , include: '**/*.java').each { java_file ->
+        fileTree(dir: '.', include: '**/*.java').each { java_file ->
             exec {
                 commandLine "astyle", "--options=$config", java_file
             }
@@ -38,14 +39,9 @@ task autoFormatCode() {
     }
 }
 
-
-
 /**********************************************************************************************
  ** Project meta + publishing part
-***********************************************************************************************/
-version '0.5'
-group "org.m2ci.msp"
-description "Java TextGrid Tools porting"
+ **********************************************************************************************/
 
 task sourceJar(type: Jar) {
     from sourceSets.main.allJava
