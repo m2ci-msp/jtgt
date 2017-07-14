@@ -220,6 +220,27 @@ public class TextGrid {
     public void deleteTier(int position) {
         getTiers().remove(position);
     }
+
+
+    /**
+     * Check if a given object is equal to the current textgrid
+     *
+     * @param o the given object
+     * @return true if equality, false else
+     */
+    @Override
+    public boolean equals(Object o) {
+	if (o == null)
+	    return false;
+
+	if (! (o instanceof TextGrid))
+	    return false;
+
+	return ((getStart() == ((TextGrid) o).getStart()) &&
+		(getEnd() == ((TextGrid) o).getEnd()) &&
+		(((getFilename() == null) && (((TextGrid) o).getFilename() == null)) || getFilename().equals(((TextGrid) o).getFilename())) &&
+		(getTiers().equals(((TextGrid) o).getTiers())));
+    }
 }
 
 

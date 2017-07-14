@@ -160,6 +160,27 @@ public abstract class Tier {
             setEnd(end_it.getEnd());
         }
     }
+
+
+    /**
+     * Check if a given object is equal to the current tier
+     *
+     * @param o the given object
+     * @return true if equality, false else
+     */
+    @Override
+    public boolean equals(Object o) {
+	if (o == null)
+	    return false;
+
+	if (! (o instanceof Tier))
+	    return false;
+
+	return ((getStart() == ((Tier) o).getStart() ) &&
+		(getEnd() == ((Tier) o).getEnd() )  &&
+		getName().equals( ((Tier) o).getName() ) &&
+		getAnnotations().equals( ((Tier) o).getAnnotations() ));
+    }
 }
 
 /* Tier.java ends here */
