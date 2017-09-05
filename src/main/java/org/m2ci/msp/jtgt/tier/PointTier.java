@@ -38,6 +38,24 @@ public class PointTier extends Tier {
     public PointTier(String name, double start, double end, ArrayList<Annotation> annotations) {
         super(name, start, end, annotations);
     }
+
+
+    /**
+     * Check if a given object is equal to the current tier
+     *
+     * @param o the given object
+     * @return true if equality, false else
+     */
+    @Override
+    public boolean equals(Object o) {
+	if (o == null)
+	    return false;
+
+	if (! (o instanceof PointTier))
+	    return false;
+
+	return super.equals(o);
+    }
 }
 
 /* PointTier.java ends here */

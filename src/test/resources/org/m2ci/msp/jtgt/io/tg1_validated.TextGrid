@@ -35,7 +35,7 @@ item []:
 		name = "Tilt"
 		xmin = 0.0
 		xmax = 2.0
-		intervals: size = 3
+		points: size = 3
 			points [1]:
 				number = 0.5
 				mark = "mark 1"

@@ -83,6 +83,25 @@ public abstract class Annotation {
     public void setText(String text) {
         _text = text;
     }
+
+    /**
+     * Check if a given object is equal to the current annotation
+     *
+     * @param o the given object
+     * @return true if equality, false else
+     */
+    @Override
+    public boolean equals(Object o) {
+	if (o == null)
+	    return false;
+
+	if (! (o instanceof Annotation))
+	    return false;
+
+	return ((getStart() == ((Annotation) o).getStart()) &&
+		(getEnd() == ((Annotation) o).getEnd())  &&
+		getText().equals(((Annotation) o).getText()));
+    }
 }
 
 

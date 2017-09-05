@@ -35,6 +35,24 @@ public class PointAnnotation extends Annotation {
         super.setStart(time);
         super.setEnd(time);
     }
+
+
+    /**
+     * Check if a given object is equal to the current annotation
+     *
+     * @param o the given object
+     * @return true if equality, false else
+     */
+    @Override
+    public boolean equals(Object o) {
+	if (o == null)
+	    return false;
+
+	if (! (o instanceof PointAnnotation))
+	    return false;
+
+	return super.equals(o);
+    }
 }
 
 

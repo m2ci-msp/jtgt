@@ -55,10 +55,10 @@ public class TextGridSerializer {
      ** Importing
      ******************************************************************************/
     /**
-     * Load the string formatted textgrid. Only long format supported for no
+     * Load the string formatted textgrid. Only long format supported for now
      *
      * @param str_tgt the textgrid in a string format
-     * @return Textgrid the loaded textgrid object
+     * @return the loaded textgrid object
      * @throws TextGridIOException if a problem occurs. See message for more explanation
      */
     public TextGrid fromString(String str_tgt) throws TextGridIOException {
@@ -264,8 +264,8 @@ public class TextGridSerializer {
         // Tier header
         Matcher m = POINTS_PATTERN.matcher(lines.get(0));
         while (! m.find()) {
-
             String line = lines.get(0);
+
             m = PROPERTY_PATTERN.matcher(line);
             if (m.find()) {
                 if (m.group(1).equals("name")) {
@@ -335,7 +335,7 @@ public class TextGridSerializer {
      * Only long format is supported for now
      *
      * @param tgt the textgrid to export
-     * @return String the formatted textgrid
+     * @return the formatted textgrid
      * @throws TextGridIOException if a problem occurs. See message for more explanation
      */
     public String toString(TextGrid tgt) throws TextGridIOException {
@@ -372,7 +372,12 @@ public class TextGridSerializer {
 
 
             ArrayList<Annotation> annotations = tier.getAnnotations();
-            str_tgt += "\t\tintervals: size = " + annotations.size() + LINE_SEPARATOR;
+
+            if (tier instanceof IntervalTier) {
+		str_tgt += "\t\tintervals: size = " + annotations.size() + LINE_SEPARATOR;
+            } else if (tier instanceof PointTier) {
+		str_tgt += "\t\tpoints: size = " + annotations.size() + LINE_SEPARATOR;
+	    }
 
             // Each annotations
             if (tier instanceof IntervalTier) {
