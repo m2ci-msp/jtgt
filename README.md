@@ -22,7 +22,7 @@ To declare a depency on JTGT you can do it:
   <dependency>
     <groupId>org.m2ci.msp</groupId>
     <artifactId>jtgt</artifactId>
-    <version>9.5</version>
+    <version>0.5.1</version>
   </dependency>
 </dependencies>
 ```
@@ -33,6 +33,6 @@ repositories {
 }
 
 dependencies {
-  compile group: 'org.m2ci.msp', name:'jtgt', version: '0.5'
+  compile group: 'org.m2ci.msp', name:'jtgt', version: '0.5.1'
 }
 ```
