@@ -374,10 +374,10 @@ public class TextGridSerializer {
             ArrayList<Annotation> annotations = tier.getAnnotations();
 
             if (tier instanceof IntervalTier) {
-		str_tgt += "\t\tintervals: size = " + annotations.size() + LINE_SEPARATOR;
+                str_tgt += "\t\tintervals: size = " + annotations.size() + LINE_SEPARATOR;
             } else if (tier instanceof PointTier) {
-		str_tgt += "\t\tpoints: size = " + annotations.size() + LINE_SEPARATOR;
-	    }
+                str_tgt += "\t\tpoints: size = " + annotations.size() + LINE_SEPARATOR;
+            }
 
             // Each annotations
             if (tier instanceof IntervalTier) {

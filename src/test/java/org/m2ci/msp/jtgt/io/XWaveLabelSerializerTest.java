@@ -49,7 +49,7 @@ public class XWaveLabelSerializerTest {
 
 
         XWaveLabelSerializer xwave_ser = new XWaveLabelSerializer();
-	TextGrid tg_predicted= xwave_ser.fromString(string_input);
+        TextGrid tg_predicted = xwave_ser.fromString(string_input);
 
         // Load the checked version
         String validated_resource_name = "arctic_a0001.TextGrid";

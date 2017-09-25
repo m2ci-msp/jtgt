@@ -170,16 +170,18 @@ public abstract class Tier {
      */
     @Override
     public boolean equals(Object o) {
-	if (o == null)
-	    return false;
+        if (o == null) {
+            return false;
+        }
 
-	if (! (o instanceof Tier))
-	    return false;
+        if (!(o instanceof Tier)) {
+            return false;
+        }
 
-	return ((getStart() == ((Tier) o).getStart() ) &&
-		(getEnd() == ((Tier) o).getEnd() )  &&
-		getName().equals( ((Tier) o).getName() ) &&
-		getAnnotations().equals( ((Tier) o).getAnnotations() ));
+        return ((getStart() == ((Tier) o).getStart()) &&
+                (getEnd() == ((Tier) o).getEnd())  &&
+                getName().equals(((Tier) o).getName()) &&
+                getAnnotations().equals(((Tier) o).getAnnotations()));
     }
 }
 

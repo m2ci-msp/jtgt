@@ -48,13 +48,15 @@ public class PointTier extends Tier {
      */
     @Override
     public boolean equals(Object o) {
-	if (o == null)
-	    return false;
+        if (o == null) {
+            return false;
+        }
 
-	if (! (o instanceof PointTier))
-	    return false;
+        if (!(o instanceof PointTier)) {
+            return false;
+        }
 
-	return super.equals(o);
+        return super.equals(o);
     }
 }
 

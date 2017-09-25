@@ -46,13 +46,15 @@ public class IntervalTier extends Tier {
      */
     @Override
     public boolean equals(Object o) {
-	if (o == null)
-	    return false;
+        if (o == null) {
+            return false;
+        }
 
-	if (! (o instanceof IntervalTier))
-	    return false;
+        if (!(o instanceof IntervalTier)) {
+            return false;
+        }
 
-	return super.equals(o);
+        return super.equals(o);
     }
 }
 

@@ -45,13 +45,15 @@ public class PointAnnotation extends Annotation {
      */
     @Override
     public boolean equals(Object o) {
-	if (o == null)
-	    return false;
+        if (o == null) {
+            return false;
+        }
 
-	if (! (o instanceof PointAnnotation))
-	    return false;
+        if (!(o instanceof PointAnnotation)) {
+            return false;
+        }
 
-	return super.equals(o);
+        return super.equals(o);
     }
 }
 

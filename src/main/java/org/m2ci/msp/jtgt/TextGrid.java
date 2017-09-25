@@ -230,16 +230,18 @@ public class TextGrid {
      */
     @Override
     public boolean equals(Object o) {
-	if (o == null)
-	    return false;
+        if (o == null) {
+            return false;
+        }
 
-	if (! (o instanceof TextGrid))
-	    return false;
+        if (!(o instanceof TextGrid)) {
+            return false;
+        }
 
-	return ((getStart() == ((TextGrid) o).getStart()) &&
-		(getEnd() == ((TextGrid) o).getEnd()) &&
-		(((getFilename() == null) && (((TextGrid) o).getFilename() == null)) || getFilename().equals(((TextGrid) o).getFilename())) &&
-		(getTiers().equals(((TextGrid) o).getTiers())));
+        return ((getStart() == ((TextGrid) o).getStart()) &&
+                (getEnd() == ((TextGrid) o).getEnd()) &&
+                (((getFilename() == null) && (((TextGrid) o).getFilename() == null)) || getFilename().equals(((TextGrid) o).getFilename())) &&
+                (getTiers().equals(((TextGrid) o).getTiers())));
     }
 }
 

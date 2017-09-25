@@ -92,15 +92,17 @@ public abstract class Annotation {
      */
     @Override
     public boolean equals(Object o) {
-	if (o == null)
-	    return false;
+        if (o == null) {
+            return false;
+        }
 
-	if (! (o instanceof Annotation))
-	    return false;
+        if (!(o instanceof Annotation)) {
+            return false;
+        }
 
-	return ((getStart() == ((Annotation) o).getStart()) &&
-		(getEnd() == ((Annotation) o).getEnd())  &&
-		getText().equals(((Annotation) o).getText()));
+        return ((getStart() == ((Annotation) o).getStart()) &&
+                (getEnd() == ((Annotation) o).getEnd())  &&
+                getText().equals(((Annotation) o).getText()));
     }
 }
 

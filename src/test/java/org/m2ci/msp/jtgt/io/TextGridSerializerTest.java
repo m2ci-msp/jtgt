@@ -48,18 +48,18 @@ public class TextGridSerializerTest {
 
         TextGridSerializer tgs = new TextGridSerializer();
 
-	// Input
+        // Input
         String input_resource_name = "tg1.TextGrid";
         InputStream input = this.getClass().getResourceAsStream(input_resource_name);
         String string_input = new Scanner(input, "UTF-8").useDelimiter("\\A").next();
         TextGrid tg_input = tgs.fromString(string_input);
 
 
-	// Validating
+        // Validating
         String validated_resource_name = "tg1_validated.TextGrid";
         InputStream validated = this.getClass().getResourceAsStream(validated_resource_name);
         String string_validated = new Scanner(validated, "UTF-8").useDelimiter("\\A").next();
-	TextGrid tg_validated = tgs.fromString(string_validated);
+        TextGrid tg_validated = tgs.fromString(string_validated);
 
 
         Assert.assertEquals(tg_validated, tg_input);

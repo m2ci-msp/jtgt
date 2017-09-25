@@ -52,44 +52,45 @@ public class XWaveLabelSerializer {
      * @throws UnsupportedOperationException as this is not supported yet
      */
     public TextGrid fromString(String str_xwave) throws TextGridIOException {
-	TextGrid tg = new TextGrid();
-	String[] lines = str_xwave.split(LINE_SEPARATOR);
+        TextGrid tg = new TextGrid();
+        String[] lines = str_xwave.split(LINE_SEPARATOR);
 
-	IntervalTier the_tier = new IntervalTier("phones");
+        IntervalTier the_tier = new IntervalTier("phones");
 
-	// Start is 0 by convention
-	tg.setStart(0);
-	the_tier.setStart(0);
-	double start = 0.0;
+        // Start is 0 by convention
+        tg.setStart(0);
+        the_tier.setStart(0);
+        double start = 0.0;
 
-	boolean header_end = false;
-	for (String line: lines) {
-	    if (! header_end) {
-		Matcher m = HEADER_SEP.matcher(line);
-		if (m.find()) {
-		    header_end = true;
-		}
-	    } else {
-		Matcher m = ELT_PATTERN.matcher(line);
-		if (m.find()) {
-		    double end = Double.parseDouble(m.group(1));
-		    the_tier.addAnnotation(new IntervalAnnotation(start, end, m.group(2)));
-		    start = end;
-		} else {
-		    throw new TextGridIOException("This line should not be in the content part: " + line);
-		}
+        boolean header_end = false;
+        for (String line : lines) {
+            if (! header_end) {
+                Matcher m = HEADER_SEP.matcher(line);
+                if (m.find()) {
+                    header_end = true;
+                }
+            } else {
+                Matcher m = ELT_PATTERN.matcher(line);
+                if (m.find()) {
+                    double end = Double.parseDouble(m.group(1));
+                    the_tier.addAnnotation(new IntervalAnnotation(start, end, m.group(2)));
+                    start = end;
+                } else {
+                    throw new TextGridIOException("This line should not be in the content part: " + line);
+                }
 
-	    }
-	}
+            }
+        }
 
-	// Last end value is save in the start variable;
-	tg.setEnd(start);
+        // Last end value is save in the start variable;
+        tg.setEnd(start);
 
-	if (the_tier.getAnnotations().size() == 0)
-	    throw new TextGridIOException("No annotations found !");
+        if (the_tier.getAnnotations().size() == 0) {
+            throw new TextGridIOException("No annotations found !");
+        }
 
-	tg.addTier(the_tier);
-	return tg;
+        tg.addTier(the_tier);
+        return tg;
     }
 
     /******************************************************************************
