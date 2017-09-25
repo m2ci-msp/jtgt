@@ -26,8 +26,8 @@ test {
  ** Formatting part
  **********************************************************************************************/
 
-task autoFormatCode() {
-    def config = file("astyle_marytts.conf")
+task autoFormatCode {
+    def config = file("astyle.conf")
     inputs.files config
     outputs.upToDateWhen { false }
     doLast {
