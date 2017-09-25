@@ -29,13 +29,15 @@ public class IntervalAnnotation extends Annotation {
      */
     @Override
     public boolean equals(Object o) {
-	if (o == null)
-	    return false;
+        if (o == null) {
+            return false;
+        }
 
-	if (! (o instanceof IntervalAnnotation))
-	    return false;
+        if (!(o instanceof IntervalAnnotation)) {
+            return false;
+        }
 
-	return super.equals(o);
+        return super.equals(o);
     }
 }
 
