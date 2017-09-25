@@ -41,7 +41,7 @@ public class XWaveLabelSerializerTest {
 
     @DataProvider
     Object[][] xlabs() {
-        return new String[][] {{"arctic_a0001.xlab"}};
+        return new String[][] {{"arctic_a0001.xlab"}, {"arctic_a0001_crlf.xlab"}};
     }
 
     @Test(dataProvider = "xlabs")

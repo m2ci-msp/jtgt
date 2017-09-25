@@ -19,7 +19,7 @@ public class TextGridSerializerTest {
 
     @DataProvider
     Object[][] textGrids() {
-        return new String[][] {{"tg1.TextGrid"}};
+        return new String[][] {{"tg1.TextGrid"}, {"tg1_crlf.TextGrid"}};
     }
 
     @Test(dataProvider = "textGrids")
