@@ -4,9 +4,10 @@ JTGT
 [Unreleased]
 ------------
 
-### Changed
+### Fixed
 
-- fixed CI testing for trusty-based infrastructure on Travis
+- CRLF import
+- CI testing for trusty-based infrastructure on Travis
 
 [v0.5.1] - 2017-07-15
 ---------------------
