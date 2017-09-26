@@ -16,16 +16,20 @@ import org.testng.annotations.*;
  * @author <a href="mailto:slemaguer@coli.uni-saarland.de">Sébastien Le Maguer</a>
  */
 public class TextGridSerializerTest {
-    @Test
-    public void testLoadingTextGridWithoutException() throws TextGridIOException {
-        String testResourceName = "tg1.TextGrid";
+
+    @DataProvider
+    Object[][] textGrids() {
+        return new String[][] {{"tg1.TextGrid"}, {"tg1_crlf.TextGrid"}};
+    }
+
+    @Test(dataProvider = "textGrids")
+    public void testLoadingTextGridWithoutException(String testResourceName) throws TextGridIOException {
         InputStream input = this.getClass().getResourceAsStream(testResourceName);
         String string_tg = new Scanner(input, "UTF-8").useDelimiter("\\A").next();
 
         TextGridSerializer tgs = new TextGridSerializer();
         TextGrid tg = tgs.fromString(string_tg);
     }
-
 
     @Test
     public void testDumpingTextGrid() throws TextGridIOException, IOException {

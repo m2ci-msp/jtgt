@@ -25,7 +25,10 @@ import java.util.regex.MatchResult;
  */
 public class XWaveLabelSerializer {
     /** A line separator wrapper */
-    private static final String LINE_SEPARATOR = "\n";
+    private static final String DEFAULT_LINE_SEPARATOR = "\n";
+
+    /** Line separator regexp */
+    private static final String LINE_SEPARATOR_PATTERN =  "[\\n\\r]+";
 
     /** The header end indicator */
     private static final Pattern HEADER_SEP = Pattern.compile("^#.*");
@@ -53,7 +56,7 @@ public class XWaveLabelSerializer {
      */
     public TextGrid fromString(String str_xwave) throws TextGridIOException {
         TextGrid tg = new TextGrid();
-        String[] lines = str_xwave.split(LINE_SEPARATOR);
+        String[] lines = str_xwave.split(LINE_SEPARATOR_PATTERN);
 
         IntervalTier the_tier = new IntervalTier("phones");
 
@@ -90,6 +93,7 @@ public class XWaveLabelSerializer {
         }
 
         tg.addTier(the_tier);
+
         return tg;
     }
 
@@ -106,9 +110,9 @@ public class XWaveLabelSerializer {
      */
     public String toString(TextGrid tgt, String tier_name) throws TextGridIOException {
 
-        String str_xwav_lab = "separator ;" + LINE_SEPARATOR;
-        str_xwav_lab += "nfields 1" + LINE_SEPARATOR;
-        str_xwav_lab += "#" + LINE_SEPARATOR;
+        String str_xwav_lab = "separator ;" + DEFAULT_LINE_SEPARATOR;
+        str_xwav_lab += "nfields 1" + DEFAULT_LINE_SEPARATOR;
+        str_xwav_lab += "#" + DEFAULT_LINE_SEPARATOR;
 
         // Find the accurate tier to export
         ArrayList<Tier> tiers = tgt.getTiers();
@@ -133,7 +137,7 @@ public class XWaveLabelSerializer {
             ArrayList<Annotation> annotations = tier.getAnnotations();
             for (int a = 0; a < annotations.size(); a++) {
                 IntervalAnnotation an = (IntervalAnnotation) annotations.get(a);
-                str_xwav_lab += "\t" + an.getEnd() + " -1 " + an.getText() + LINE_SEPARATOR;
+                str_xwav_lab += "\t" + an.getEnd() + " -1 " + an.getText() + DEFAULT_LINE_SEPARATOR;
             }
         } else {
             throw new TextGridIOException("Don't know how to serialize anaything execpt an IntervalTier");

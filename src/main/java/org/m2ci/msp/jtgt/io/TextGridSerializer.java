@@ -24,7 +24,10 @@ import java.util.regex.Matcher;
  */
 public class TextGridSerializer {
     /** A line separator wrapper */
-    private static final String LINE_SEPARATOR = "\n";
+    private static final String DEFAULT_LINE_SEPARATOR = "\n";
+
+    /** Line separator regexp */
+    private static final String LINE_SEPARATOR_PATTERN =  "[\\n\\r]+";
 
     /** The property pattern to extract its name and its value in 2 groups */
     private static final Pattern PROPERTY_PATTERN = Pattern.compile("^[ \t]*(\\p{Alnum}+)[ \t]*=[ \t]*\"?([^\"]*)\"?");
@@ -63,8 +66,8 @@ public class TextGridSerializer {
      */
     public TextGrid fromString(String str_tgt) throws TextGridIOException {
         TextGrid tgt = new TextGrid();
-        ArrayList<String> lines = new ArrayList<String>(Arrays.asList(str_tgt.split(LINE_SEPARATOR + "+")));
-        int i = 0;
+        ArrayList<String> lines = new ArrayList<String>(Arrays.asList(str_tgt.split(LINE_SEPARATOR_PATTERN + "+")));
+
 
         String tmp_line = lines.remove(0);
         if (! tmp_line.equals("File type = \"ooTextFile\"")) {
@@ -340,60 +343,60 @@ public class TextGridSerializer {
      */
     public String toString(TextGrid tgt) throws TextGridIOException {
 
-        String str_tgt = "File type = \"ooTextFile\"" + LINE_SEPARATOR;
-        str_tgt += "Object class = \"TextGrid\"" + LINE_SEPARATOR;
-        str_tgt += LINE_SEPARATOR;
-        str_tgt += "xmin = " + tgt.getStart() + LINE_SEPARATOR;
-        str_tgt += "xmax = " + tgt.getEnd() + LINE_SEPARATOR;
-        str_tgt += "tiers? <exists>" + LINE_SEPARATOR;
+        String str_tgt = "File type = \"ooTextFile\"" + DEFAULT_LINE_SEPARATOR;
+        str_tgt += "Object class = \"TextGrid\"" + DEFAULT_LINE_SEPARATOR;
+        str_tgt += DEFAULT_LINE_SEPARATOR;
+        str_tgt += "xmin = " + tgt.getStart() + DEFAULT_LINE_SEPARATOR;
+        str_tgt += "xmax = " + tgt.getEnd() + DEFAULT_LINE_SEPARATOR;
+        str_tgt += "tiers? <exists>" + DEFAULT_LINE_SEPARATOR;
 
         // Tier export
         ArrayList<Tier> tiers = tgt.getTiers();
-        str_tgt += "size = " + tiers.size() + LINE_SEPARATOR;
+        str_tgt += "size = " + tiers.size() + DEFAULT_LINE_SEPARATOR;
 
-        str_tgt += "item []:" + LINE_SEPARATOR;
+        str_tgt += "item []:" + DEFAULT_LINE_SEPARATOR;
         for (int t = 0; t < tiers.size(); t++) {
 
             // Get the current tier
             Tier tier = tiers.get(t);
 
-            str_tgt += "\titem [" + (t + 1) + "]:" + LINE_SEPARATOR;
+            str_tgt += "\titem [" + (t + 1) + "]:" + DEFAULT_LINE_SEPARATOR;
 
             if (tier instanceof IntervalTier) {
-                str_tgt += "\t\tclass = \"IntervalTier\"" + LINE_SEPARATOR;
+                str_tgt += "\t\tclass = \"IntervalTier\"" + DEFAULT_LINE_SEPARATOR;
             } else if (tier instanceof PointTier) {
-                str_tgt += "\t\tclass = \"TextTier\"" + LINE_SEPARATOR;
+                str_tgt += "\t\tclass = \"TextTier\"" + DEFAULT_LINE_SEPARATOR;
             } else {
                 throw new TextGridIOException(tier.getClass().toString() + " serialization is not supported");
             }
-            str_tgt += "\t\tname = \"" + tier.getName() +  "\"" + LINE_SEPARATOR;
-            str_tgt += "\t\txmin = " + tier.getStart() + LINE_SEPARATOR;
-            str_tgt += "\t\txmax = " + tier.getEnd() + LINE_SEPARATOR;
+            str_tgt += "\t\tname = \"" + tier.getName() +  "\"" + DEFAULT_LINE_SEPARATOR;
+            str_tgt += "\t\txmin = " + tier.getStart() + DEFAULT_LINE_SEPARATOR;
+            str_tgt += "\t\txmax = " + tier.getEnd() + DEFAULT_LINE_SEPARATOR;
 
 
             ArrayList<Annotation> annotations = tier.getAnnotations();
 
             if (tier instanceof IntervalTier) {
-                str_tgt += "\t\tintervals: size = " + annotations.size() + LINE_SEPARATOR;
+                str_tgt += "\t\tintervals: size = " + annotations.size() + DEFAULT_LINE_SEPARATOR;
             } else if (tier instanceof PointTier) {
-                str_tgt += "\t\tpoints: size = " + annotations.size() + LINE_SEPARATOR;
+                str_tgt += "\t\tpoints: size = " + annotations.size() + DEFAULT_LINE_SEPARATOR;
             }
 
             // Each annotations
             if (tier instanceof IntervalTier) {
                 for (int a = 0; a < annotations.size(); a++) {
                     IntervalAnnotation an = (IntervalAnnotation) annotations.get(a);
-                    str_tgt += "\t\t\tintervals [" + (a + 1) + "]:" + LINE_SEPARATOR;
-                    str_tgt += "\t\t\t\txmin = " + an.getStart() + LINE_SEPARATOR;
-                    str_tgt += "\t\t\t\txmax = " + an.getEnd() + LINE_SEPARATOR;
-                    str_tgt += "\t\t\t\ttext = \"" + an.getText() + "\"" + LINE_SEPARATOR;
+                    str_tgt += "\t\t\tintervals [" + (a + 1) + "]:" + DEFAULT_LINE_SEPARATOR;
+                    str_tgt += "\t\t\t\txmin = " + an.getStart() + DEFAULT_LINE_SEPARATOR;
+                    str_tgt += "\t\t\t\txmax = " + an.getEnd() + DEFAULT_LINE_SEPARATOR;
+                    str_tgt += "\t\t\t\ttext = \"" + an.getText() + "\"" + DEFAULT_LINE_SEPARATOR;
                 }
             } else if (tier instanceof PointTier) { //
                 for (int a = 0; a < annotations.size(); a++) {
                     PointAnnotation an = (PointAnnotation) annotations.get(a);
-                    str_tgt += "\t\t\tpoints [" + (a + 1) + "]:" + LINE_SEPARATOR;
-                    str_tgt += "\t\t\t\tnumber = " + an.getTime() + LINE_SEPARATOR;
-                    str_tgt += "\t\t\t\tmark = \"" + an.getText() + "\"" + LINE_SEPARATOR;
+                    str_tgt += "\t\t\tpoints [" + (a + 1) + "]:" + DEFAULT_LINE_SEPARATOR;
+                    str_tgt += "\t\t\t\tnumber = " + an.getTime() + DEFAULT_LINE_SEPARATOR;
+                    str_tgt += "\t\t\t\tmark = \"" + an.getText() + "\"" + DEFAULT_LINE_SEPARATOR;
                 }
             }
         }

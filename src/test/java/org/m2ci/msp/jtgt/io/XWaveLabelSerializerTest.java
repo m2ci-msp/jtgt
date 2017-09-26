@@ -18,7 +18,6 @@ import org.testng.annotations.*;
  */
 public class XWaveLabelSerializerTest {
 
-
     @Test
     public void testExportXWaveLabel() throws TextGridIOException, IOException {
         String input_resource_name = "arctic_a0001.TextGrid";
@@ -40,10 +39,13 @@ public class XWaveLabelSerializerTest {
         Assert.assertEquals(xlab_pred, xlab_validated);
     }
 
+    @DataProvider
+    Object[][] xlabs() {
+        return new String[][] {{"arctic_a0001.xlab"}, {"arctic_a0001_crlf.xlab"}};
+    }
 
-    @Test
-    public void testImportXWaveLabel() throws TextGridIOException, IOException {
-        String input_resource_name = "arctic_a0001.xlab";
+    @Test(dataProvider = "xlabs")
+    public void testImportXWaveLabel(String input_resource_name) throws TextGridIOException, IOException {
         InputStream input = this.getClass().getResourceAsStream(input_resource_name);
         String string_input = new Scanner(input, "UTF-8").useDelimiter("\\A").next();
 
