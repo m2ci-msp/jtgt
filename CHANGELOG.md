@@ -4,6 +4,9 @@ JTGT
 [Unreleased]
 ------------
 
+[v0.5.2] - 2017-09-27
+---------------------
+
 ### Fixed
 
 - CRLF import
@@ -27,6 +30,7 @@ JTGT
 
 ### Initial release
 
-[Unreleased]: https://github.com/m2ci-msp/jtgt/compare/v0.5.1...HEAD
+[Unreleased]: https://github.com/m2ci-msp/jtgt/compare/v0.5.2...HEAD
+[v0.5.2]: https://github.com/m2ci-msp/jtgt/compare/v0.5.1...v0.5.2
 [v0.5.1]: https://github.com/m2ci-msp/jtgt/compare/v0.5...v0.5.1
 [v0.5]: https://github.com/m2ci-msp/jtgt/tree/v0.5
