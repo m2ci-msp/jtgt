@@ -4,6 +4,9 @@ JTGT
 [Unreleased]
 ------------
 
+[v0.5.3] - 2017-10-12
+---------------------
+
 ### Fixed
 
 - ESPS Xwaves lab incompatibility with MaryTTS bug
@@ -34,7 +37,8 @@ JTGT
 
 ### Initial release
 
-[Unreleased]: https://github.com/m2ci-msp/jtgt/compare/v0.5.2...HEAD
+[Unreleased]: https://github.com/m2ci-msp/jtgt/compare/v0.5.3...HEAD
+[v0.5.3]: https://github.com/m2ci-msp/jtgt/compare/v0.5.2...v0.5.3
 [v0.5.2]: https://github.com/m2ci-msp/jtgt/compare/v0.5.1...v0.5.2
 [v0.5.1]: https://github.com/m2ci-msp/jtgt/compare/v0.5...v0.5.1
 [v0.5]: https://github.com/m2ci-msp/jtgt/tree/v0.5
