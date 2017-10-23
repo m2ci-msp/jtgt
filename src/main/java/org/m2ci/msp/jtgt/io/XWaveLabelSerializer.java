@@ -36,6 +36,9 @@ public class XWaveLabelSerializer {
     /** Element parsing regexp */
     private static final Pattern ELT_PATTERN = Pattern.compile("^[ \t]*([0-9.]+)[ \t]*-?[0-9]+[ \t]*([^ \t]*)[ \t]*$");
 
+    /** Constant for the middle field (no semantic !) */
+    private static final String MIDDLE_VALUE = "26";
+
     /**
      * Default constructor
      *
@@ -137,7 +140,7 @@ public class XWaveLabelSerializer {
             ArrayList<Annotation> annotations = tier.getAnnotations();
             for (int a = 0; a < annotations.size(); a++) {
                 IntervalAnnotation an = (IntervalAnnotation) annotations.get(a);
-                str_xwav_lab += "\t" + an.getEnd() + " -1 " + an.getText() + DEFAULT_LINE_SEPARATOR;
+                str_xwav_lab += "\t" + an.getEnd() + " " + MIDDLE_VALUE + " " + an.getText() + DEFAULT_LINE_SEPARATOR;
             }
         } else {
             throw new TextGridIOException("Don't know how to serialize anaything execpt an IntervalTier");

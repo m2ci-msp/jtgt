@@ -4,6 +4,10 @@ JTGT
 [Unreleased]
 ------------
 
+### Fixed
+
+- ESPS Xwaves lab incompatibility with MaryTTS bug
+
 [v0.5.2] - 2017-09-27
 ---------------------
 
