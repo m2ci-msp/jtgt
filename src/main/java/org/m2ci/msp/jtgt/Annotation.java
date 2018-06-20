@@ -1,5 +1,7 @@
 package org.m2ci.msp.jtgt;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * TextGrid annotation wrapper class
@@ -103,6 +105,10 @@ public abstract class Annotation {
         return ((getStart() == ((Annotation) o).getStart()) &&
                 (getEnd() == ((Annotation) o).getEnd())  &&
                 getText().equals(((Annotation) o).getText()));
+    }
+
+    public String toString() {
+        return new ReflectionToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).toString();
     }
 }
 
