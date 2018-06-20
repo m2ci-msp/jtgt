@@ -3,7 +3,7 @@ plugins {
     id 'maven-publish'
 }
 
-version '0.6'
+version '0.7-SNAPSHOT'
 group "org.m2ci.msp"
 description "Java TextGridTools"
 
