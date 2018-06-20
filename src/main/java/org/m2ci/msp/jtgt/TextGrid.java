@@ -22,6 +22,7 @@ public class TextGrid {
     private double _end;
 
     /** The filename associated with the textgrid */
+    @Deprecated
     private String _filename;
 
     /*********************************************************************************************
@@ -55,9 +56,23 @@ public class TextGrid {
      * @param filename the filename
      * @param start the start time of the textgrid
      * @param end the end time of the textgrid
+     * @deprecated use {@link #TextGrid(double, double)}
      */
+    @Deprecated
     public TextGrid(String filename, double start, double end) {
         setFilename(filename);
+        setStart(start);
+        setEnd(end);
+        setTiers(new ArrayList<Tier>());
+    }
+
+    /**
+     * Constructor with full information without the tiers
+     *
+     * @param start the start time of the textgrid
+     * @param end the end time of the textgrid
+     */
+    public TextGrid(double start, double end) {
         setStart(start);
         setEnd(end);
         setTiers(new ArrayList<Tier>());
@@ -70,9 +85,24 @@ public class TextGrid {
      * @param start the start time of the textgrid
      * @param end the end time of the textgrid
      * @param tiers the tiers which are going to compose the textgrid
+     * @deprecated use {@link #TextGrid(double, double, ArrayList)}
      */
+    @Deprecated
     public TextGrid(String filename, double start, double end, ArrayList<Tier> tiers) {
         setFilename(filename);
+        setStart(start);
+        setEnd(end);
+        setTiers(tiers);
+    }
+
+    /**
+     * Constructor with full information with the tiers
+     *
+     * @param start the start time of the textgrid
+     * @param end the end time of the textgrid
+     * @param tiers the tiers which are going to comprise the textgrid
+     */
+    public TextGrid(double start, double end, ArrayList<Tier> tiers) {
         setStart(start);
         setEnd(end);
         setTiers(tiers);
@@ -94,7 +124,9 @@ public class TextGrid {
      * Getting the filename
      *
      * @return the filename
+     * @deprecated TextGrids should not have a filename
      */
+    @Deprecated
     public String getFilename() {
         return _filename;
     }
@@ -130,7 +162,9 @@ public class TextGrid {
      * Define the filename
      *
      * @param filename the filename associated to the textgrid
+     * @deprecated TextGrids should not have a filename
      */
+    @Deprecated
     public void setFilename(String filename) {
         this._filename = filename;
     }
