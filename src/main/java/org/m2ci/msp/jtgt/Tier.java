@@ -1,5 +1,9 @@
 package org.m2ci.msp.jtgt;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 /**
@@ -182,6 +186,11 @@ public abstract class Tier {
                 (getEnd() == ((Tier) o).getEnd())  &&
                 getName().equals(((Tier) o).getName()) &&
                 getAnnotations().equals(((Tier) o).getAnnotations()));
+    }
+
+    public String toString() {
+        String jsonStr = new ReflectionToStringBuilder(this, ToStringStyle.JSON_STYLE).toString();
+        return new JSONObject(jsonStr).toString(4);
     }
 }
 

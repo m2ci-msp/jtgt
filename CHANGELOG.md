@@ -8,6 +8,7 @@ JTGT
 
 - publish Javadoc artifact
 - link to hosted Javadoc
+- JSON-compatible String representation of TextGrid objects
 
 ### Fixed
 

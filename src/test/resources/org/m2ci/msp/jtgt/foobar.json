@@ -1,0 +1,24 @@
+{
+  "_filename": null,
+  "_start": 0,
+  "_end": 1,
+  "_tiers": [
+    {
+      "_start": 0,
+      "_end": 1,
+      "_name": "foobar",
+      "_annotations": [
+        {
+          "_start": 0,
+          "_end": 0.5,
+          "_text": "foo"
+        },
+        {
+          "_start": 0.5,
+          "_end": 1,
+          "_text": "bar"
+        }
+      ]
+    }
+  ]
+}

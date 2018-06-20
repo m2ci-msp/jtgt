@@ -1,5 +1,9 @@
 package org.m2ci.msp.jtgt;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 /**
@@ -242,6 +246,11 @@ public class TextGrid {
                 (getEnd() == ((TextGrid) o).getEnd()) &&
                 (((getFilename() == null) && (((TextGrid) o).getFilename() == null)) || getFilename().equals(((TextGrid) o).getFilename())) &&
                 (getTiers().equals(((TextGrid) o).getTiers())));
+    }
+
+    public String toString() {
+        String jsonStr = new ReflectionToStringBuilder(this, ToStringStyle.JSON_STYLE).toString();
+        return new JSONObject(jsonStr).toString(4);
     }
 }
 
