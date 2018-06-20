@@ -48,15 +48,20 @@ task autoFormatCode {
 
 task sourceJar(type: Jar) {
     from sourceSets.main.allJava
+    classifier 'sources'
+}
+
+task javadocJar(type: Jar) {
+    from javadoc
+    classifier 'javadoc'
 }
 
 publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
-            artifact sourceJar {
-                classifier 'sources'
-            }
+            artifact sourceJar
+            artifact javadocJar
         }
     }
     repositories {
