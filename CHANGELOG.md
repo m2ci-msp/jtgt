@@ -13,6 +13,7 @@ JTGT
 ### Changed
 
 - build with Gradle v4.8
+- [all changes since v0.5.3]
 
 ### Fixed
 
@@ -25,6 +26,10 @@ JTGT
 
 - ESPS Xwaves lab incompatibility with MaryTTS bug
 
+### Changed
+
+- [all changes since v0.5.2]
+
 [v0.5.2] - 2017-09-27
 ---------------------
 
@@ -32,6 +37,10 @@ JTGT
 
 - CRLF import
 - CI testing for trusty-based infrastructure on Travis
+
+### Changed
+
+- [all changes since v0.5.1]
 
 [v0.5.1] - 2017-07-15
 ---------------------
@@ -45,14 +54,19 @@ JTGT
 
 - Improved testing
 - Miscellaneous improvements
+- [all changes since v0.5]
 
 [v0.5] - 2017-06-20
 -------------------
 
 ### Initial release
 
-[Unreleased]: https://github.com/m2ci-msp/jtgt/compare/v0.5.3...HEAD
-[v0.5.3]: https://github.com/m2ci-msp/jtgt/compare/v0.5.2...v0.5.3
-[v0.5.2]: https://github.com/m2ci-msp/jtgt/compare/v0.5.1...v0.5.2
-[v0.5.1]: https://github.com/m2ci-msp/jtgt/compare/v0.5...v0.5.1
-[v0.5]: https://github.com/m2ci-msp/jtgt/tree/v0.5
+[Unreleased]: https://github.com/m2ci-msp/jtgt/tree/master
+[all changes since v0.5.3]: https://github.com/m2ci-msp/jtgt/compare/v0.5.3...HEAD
+[v0.5.3]: https://github.com/m2ci-msp/jtgt/releases/tag/v0.5.3
+[all changes since v0.5.2]: https://github.com/m2ci-msp/jtgt/compare/v0.5.2...v0.5.3
+[v0.5.2]: https://github.com/m2ci-msp/jtgt/releases/tag/v0.5.2
+[all changes since v0.5.1]: https://github.com/m2ci-msp/jtgt/compare/v0.5.1...v0.5.2
+[v0.5.1]: https://github.com/m2ci-msp/jtgt/releases/tag/v0.5.1
+[all changes since v0.5]: https://github.com/m2ci-msp/jtgt/compare/v0.5...v0.5.1
+[v0.5]: https://github.com/m2ci-msp/jtgt/releases/tag/v0.5
