@@ -31,7 +31,7 @@ public class TextGridSerializerTest {
         TextGrid tg = tgs.fromString(string_tg);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testDumpingTextGrid() throws TextGridIOException, IOException {
         String input_resource_name = "tg1.TextGrid";
         InputStream input = this.getClass().getResourceAsStream(input_resource_name);

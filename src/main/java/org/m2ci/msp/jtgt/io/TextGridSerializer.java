@@ -106,7 +106,7 @@ public class TextGridSerializer {
             if (!m.find()) {
                 throw new TextGridIOException("nb_tiers line is not correctly formatted");
             }
-            int nb_tiers = Integer.parseInt(m.group(2));
+            int nb_tiers = Integer.parseInt(m.group(2).trim());
 
             // Header announcing items
             lines.remove(0);

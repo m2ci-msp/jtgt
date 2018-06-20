@@ -20,6 +20,9 @@ dependencies {
 
 test {
     useTestNG()
+    testLogging {
+        exceptionFormat = 'full'
+    }
 }
 
 /**********************************************************************************************
