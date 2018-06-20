@@ -2,6 +2,7 @@ package org.m2ci.msp.jtgt;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -248,7 +249,8 @@ public class TextGrid {
     }
 
     public String toString() {
-        return new ReflectionToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).toString();
+        String jsonStr = new ReflectionToStringBuilder(this, ToStringStyle.JSON_STYLE).toString();
+        return new JSONObject(jsonStr).toString(4);
     }
 }
 
