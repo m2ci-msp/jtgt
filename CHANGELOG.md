@@ -4,6 +4,11 @@ JTGT
 [Unreleased]
 ------------
 
+### Added
+
+- publish Javadoc artifact
+- link to hosted Javadoc
+
 ### Fixed
 
 - incompatibility with TextGrids written by Praat

@@ -1,38 +1,39 @@
 [![Build Status](https://travis-ci.org/m2ci-msp/jtgt.svg?branch=master)](https://travis-ci.org/m2ci-msp/jtgt)
 [![Download](https://api.bintray.com/packages/m2ci-msp/maven/jtgt/images/download.svg)](https://bintray.com/m2ci-msp/maven/jtgt/_latestVersion)
-[![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](http://www.gnu.org/licenses/lgpl-3.0)
+[![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
 
 # JTGT
 
-JTGT is a porting of the TextGrid Tools python library into java. Original TextGridTools can be find here: https://github.com/hbuschme/TextGridTools
+JTGT is a Java library for loading, manipulating, and writing [Praat] TextGrid files, and similar annotation files, such as XWaves lab.
+It's inspired by the [TextGridTools] module for Python.
 
-## Adding JTGT to your dependencies
+## Dependency Information
 
-To declare a depency on JTGT you can do it:
+Release versions are [hosted on Bintray] and indexed in [JCenter].
+Snapshot builds are [hosted on OJO].
 
-- in the `pom.xml` for Maven:
-```xml
-<repositories>
-  <repository>
-    <url>https://jcenter.bintray.com</url>
-  </repository>
-</repositories>
+## Examples
 
-<dependencies>
-  <dependency>
-    <groupId>org.m2ci.msp</groupId>
-    <artifactId>jtgt</artifactId>
-    <version>0.5.3</version>
-  </dependency>
-</dependencies>
+### Loading a TextGrid file
+
+```java
+String tgStr = new File("path/to/my.TextGrid").getText();
+TextGrid tg = new TextGridSerializer().fromString(tgStr);
 ```
-- in the `build.gradle` for Gradle
-```groovy
-repositories {
-  jcenter()
-}
 
-dependencies {
-  compile group: 'org.m2ci.msp', name:'jtgt', version: '0.5.3'
+### Iterating over intervals
+
+```java
+for (Annotation annot : tg.getTiers().get(0).getAnnotations()) {
+    System.out.println(annot.getText());
 }
 ```
+
+### [Javadoc]
+
+[Praat]: http://praat.org/
+[TextGridTools]: https://github.com/hbuschme/TextGridTools
+[hosted on Bintray]: https://bintray.com/m2ci-msp/maven/jtgt/_latestVersion
+[JCenter]: https://bintray.com/bintray/jcenter
+[hosted on OJO]: https://oss.jfrog.org/artifactory/webapp/#/artifacts/browse/tree/General/oss-snapshot-local/org/m2ci/msp/jtgt
+[Javadoc]: https://m2ci-msp.github.io/jtgt/docs/javadoc/
