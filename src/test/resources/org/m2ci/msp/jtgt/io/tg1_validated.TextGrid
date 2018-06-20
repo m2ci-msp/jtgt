@@ -29,7 +29,7 @@ item []:
         intervals [1]:
             xmin = 0.8297278911564626 
             xmax = 2 
-            text = "test" 
+            text = "test1"
     item [3]:
         class = "TextTier" 
         name = "Tilt" 
