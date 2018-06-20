@@ -1,8 +1,8 @@
 JTGT
 ====
 
-[Unreleased]
-------------
+[v0.6] - 2018-06-21
+-------------------
 
 ### Added
 
@@ -61,7 +61,7 @@ JTGT
 
 ### Initial release
 
-[Unreleased]: https://github.com/m2ci-msp/jtgt/tree/master
+[v0.6]: https://github.com/m2ci-msp/jtgt/releases/tag/v0.6
 [all changes since v0.5.3]: https://github.com/m2ci-msp/jtgt/compare/v0.5.3...HEAD
 [v0.5.3]: https://github.com/m2ci-msp/jtgt/releases/tag/v0.5.3
 [all changes since v0.5.2]: https://github.com/m2ci-msp/jtgt/compare/v0.5.2...v0.5.3
