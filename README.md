@@ -29,8 +29,11 @@ for (Annotation annot : tg.getTiers().get(0).getAnnotations()) {
 }
 ```
 
+### [Javadoc]
+
 [Praat]: http://praat.org/
 [TextGridTools]: https://github.com/hbuschme/TextGridTools
 [hosted on Bintray]: https://bintray.com/m2ci-msp/maven/jtgt/_latestVersion
 [JCenter]: https://bintray.com/bintray/jcenter
 [hosted on OJO]: https://oss.jfrog.org/artifactory/webapp/#/artifacts/browse/tree/General/oss-snapshot-local/org/m2ci/msp/jtgt
+[Javadoc]: https://m2ci-msp.github.io/jtgt/docs/javadoc/
