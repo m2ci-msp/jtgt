@@ -10,6 +10,10 @@ JTGT
 - link to hosted Javadoc
 - JSON-compatible String representation of TextGrid objects
 
+### Changed
+
+- build with Gradle v4.8
+
 ### Fixed
 
 - incompatibility with TextGrids written by Praat
