@@ -4,6 +4,10 @@ JTGT
 [Unreleased]
 ------------
 
+### Fixed
+
+- incompatibility with TextGrids written by Praat
+
 [v0.5.3] - 2017-10-12
 ---------------------
 
