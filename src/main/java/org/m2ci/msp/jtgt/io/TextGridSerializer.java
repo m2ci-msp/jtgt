@@ -117,7 +117,7 @@ public class TextGridSerializer {
                                               ") and the expected number of tiers (" + nb_tiers + ")");
             }
 
-            tgt = new TextGrid(null, xmin, xmax, tiers);
+            tgt = new TextGrid(xmin, xmax, tiers);
 
         } else {
             throw new TextGridIOException("Short format not supported yet or invalid line: \"" + lines.get(0) + "\"");
