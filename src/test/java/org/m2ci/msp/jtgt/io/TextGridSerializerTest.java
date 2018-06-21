@@ -1,12 +1,17 @@
 package org.m2ci.msp.jtgt.io;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Scanner;
+
 import org.m2ci.msp.jtgt.TextGrid;
+import org.m2ci.msp.jtgt.annotation.IntervalAnnotation;
 import org.m2ci.msp.jtgt.io.TextGridSerializer;
 import org.m2ci.msp.jtgt.io.TextGridIOException;
+
 import java.io.IOException;
 
+import org.m2ci.msp.jtgt.tier.IntervalTier;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -67,6 +72,21 @@ public class TextGridSerializerTest {
 
 
         Assert.assertEquals(tg_validated, tg_input);
+    }
+
+    @Test(timeOut = 10000)
+    public void testToStringPerformance() throws TextGridIOException {
+        // create TextGrid with many intervals
+        int xmax = 10000;
+        ArrayList intervals = new ArrayList<IntervalAnnotation>();
+        for (int i = 0; i < xmax; i++) {
+            intervals.add(new IntervalAnnotation(i, i + 1, String.valueOf(i)));
+        }
+        IntervalTier tier = new IntervalTier("lots", 0, xmax, intervals);
+        TextGrid tg = new TextGrid(0, xmax);
+        tg.addTier(tier);
+        // dump it to String
+        new TextGridSerializer().toString(tg);
     }
 }
 
