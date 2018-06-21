@@ -1,12 +1,16 @@
 package org.m2ci.msp.jtgt.io;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import org.m2ci.msp.jtgt.Annotation;
 import org.m2ci.msp.jtgt.TextGrid;
-import org.m2ci.msp.jtgt.io.TextGridSerializer;
-import org.m2ci.msp.jtgt.io.TextGridIOException;
+import org.m2ci.msp.jtgt.annotation.IntervalAnnotation;
+
 import java.io.IOException;
 
+import org.m2ci.msp.jtgt.tier.IntervalTier;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -28,11 +32,11 @@ public class TextGridSerializerTest {
         String string_tg = new Scanner(input, "UTF-8").useDelimiter("\\A").next();
 
         TextGridSerializer tgs = new TextGridSerializer();
-        TextGrid tg = tgs.fromString(string_tg);
+        Assert.assertNotNull(tgs.fromString(string_tg));
     }
 
     @Test(enabled = false)
-    public void testDumpingTextGrid() throws TextGridIOException, IOException {
+    public void testDumpingTextGrid() throws IOException {
         String input_resource_name = "tg1.TextGrid";
         InputStream input = this.getClass().getResourceAsStream(input_resource_name);
         String string_input = new Scanner(input, "UTF-8").useDelimiter("\\A").next();
@@ -48,7 +52,7 @@ public class TextGridSerializerTest {
     }
 
     @Test
-    public void testEquals() throws TextGridIOException, IOException {
+    public void testEquals() throws IOException {
 
         TextGridSerializer tgs = new TextGridSerializer();
 
@@ -67,6 +71,21 @@ public class TextGridSerializerTest {
 
 
         Assert.assertEquals(tg_validated, tg_input);
+    }
+
+    @Test(timeOut = 1000)
+    public void testToStringPerformance() throws TextGridIOException {
+        // create TextGrid with many intervals
+        int xmax = 10000;
+        ArrayList<Annotation> intervals = new ArrayList<>();
+        for (int i = 0; i < xmax; i++) {
+            intervals.add(new IntervalAnnotation(i, i + 1, String.valueOf(i)));
+        }
+        IntervalTier tier = new IntervalTier("lots", 0, xmax, intervals);
+        TextGrid tg = new TextGrid(0, xmax);
+        tg.addTier(tier);
+        // dump it to String
+        Assert.assertNotNull(new TextGridSerializer().toString(tg));
     }
 }
 

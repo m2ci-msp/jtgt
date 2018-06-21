@@ -8,6 +8,10 @@ JTGT
 
 - [all changes since v0.6]
 
+### Fixed
+
+- significant performance issue when saving big TextGrids
+
 [v0.6] - 2018-06-21
 -------------------
 
