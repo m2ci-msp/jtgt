@@ -73,7 +73,7 @@ public class TextGridSerializerTest {
         Assert.assertEquals(tg_validated, tg_input);
     }
 
-    @Test(timeOut = 100)
+    @Test(timeOut = 1000)
     public void testToStringPerformance() throws TextGridIOException {
         // create TextGrid with many intervals
         int xmax = 10000;
