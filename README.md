@@ -29,7 +29,7 @@ for (Annotation annot : tg.getTiers().get(0).getAnnotations()) {
 }
 ```
 
-### [Javadoc]
+## [Javadoc]
 
 [Praat]: http://praat.org/
 [TextGridTools]: https://github.com/hbuschme/TextGridTools
