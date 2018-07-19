@@ -6,6 +6,7 @@ JTGT
 
 ### Changed
 
+- build with Gradle v4.9
 - [all changes since v0.6]
 
 ### Fixed
