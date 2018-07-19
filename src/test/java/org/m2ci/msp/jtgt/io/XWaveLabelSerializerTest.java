@@ -3,9 +3,6 @@ package org.m2ci.msp.jtgt.io;
 import java.io.InputStream;
 import java.util.Scanner;
 import org.m2ci.msp.jtgt.TextGrid;
-import org.m2ci.msp.jtgt.io.XWaveLabelSerializer;
-import org.m2ci.msp.jtgt.io.TextGridSerializer;
-import org.m2ci.msp.jtgt.io.TextGridIOException;
 import java.io.IOException;
 
 import org.testng.Assert;

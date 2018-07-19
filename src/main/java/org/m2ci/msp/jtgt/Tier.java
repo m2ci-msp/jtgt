@@ -13,16 +13,16 @@ import java.util.ArrayList;
  */
 public abstract class Tier {
     /** List of annotations */
-    private ArrayList<Annotation> _annotations;
+    private ArrayList<Annotation> annotations;
 
     /** Start of the tier */
-    private double _start;
+    private double start;
 
     /** End of the tier */
-    private double _end;
+    private double end;
 
     /** Name of the tier */
-    private String _name;
+    private String name;
 
 
     /*********************************************************************************************
@@ -66,7 +66,7 @@ public abstract class Tier {
      * @return the start time of the tier
      */
     public double getStart() {
-        return _start;
+        return start;
     }
 
     /**
@@ -75,7 +75,7 @@ public abstract class Tier {
      * @return the end time of the tier
      */
     public double getEnd() {
-        return _end;
+        return end;
     }
 
     /**
@@ -84,7 +84,7 @@ public abstract class Tier {
      * @return the name of the tier
      */
     public String getName() {
-        return _name;
+        return name;
     }
 
     /**
@@ -93,7 +93,7 @@ public abstract class Tier {
      * @return the list of annotations composing the tier
      */
     public ArrayList<Annotation> getAnnotations() {
-        return _annotations;
+        return annotations;
     }
 
     /**
@@ -102,7 +102,7 @@ public abstract class Tier {
      * @param start the start time of the tier
      */
     public void setStart(double start) {
-        this._start = start;
+        this.start = start;
     }
 
     /**
@@ -111,7 +111,7 @@ public abstract class Tier {
      * @param end the end time of the tier
      */
     public void setEnd(double end) {
-        this._end = end;
+        this.end = end;
     }
 
     /**
@@ -120,7 +120,7 @@ public abstract class Tier {
      * @param name the name of the tier
      */
     public void setName(String name) {
-        this._name = name;
+        this.name = name;
     }
 
     /**
@@ -129,7 +129,7 @@ public abstract class Tier {
      * @param annotations the list of annotations composing the tiers
      */
     public void setAnnotations(ArrayList<Annotation> annotations) {
-        this._annotations = annotations;
+        this.annotations = annotations;
     }
 
     /**
@@ -138,7 +138,7 @@ public abstract class Tier {
      * @param annotation the annotation to add
      */
     public void addAnnotation(Annotation annotation) {
-        _annotations.add(annotation);
+        annotations.add(annotation);
 
 
         // Adapt the end time if adding the annotation implies a change
@@ -156,7 +156,7 @@ public abstract class Tier {
         Annotation end_it = null;
         for (Annotation an : annotations) {
             end_it = an;
-            _annotations.add(an);
+            this.annotations.add(an);
         }
 
         // Adapt the end time if adding the annotations implies a change
