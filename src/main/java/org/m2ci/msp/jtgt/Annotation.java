@@ -11,13 +11,13 @@ import org.json.JSONObject;
  */
 public abstract class Annotation {
     /** The start of the annotation */
-    private double _start;
+    private double start;
 
     /** The end of the annotation */
-    private double _end;
+    private double end;
 
     /** The text of the annotation */
-    private String _text;
+    private String text;
 
     /**
      * Constructor of an annotation
@@ -38,7 +38,7 @@ public abstract class Annotation {
      * @return the start of the annotation
      */
     public double getStart() {
-        return _start;
+        return start;
     }
 
     /**
@@ -47,7 +47,7 @@ public abstract class Annotation {
      * @return the end of the annotation
      */
     public double getEnd() {
-        return _end;
+        return end;
     }
 
 
@@ -57,7 +57,7 @@ public abstract class Annotation {
      * @return the label of the annotation
      */
     public String getText() {
-        return _text;
+        return text;
     }
 
     /**
@@ -66,7 +66,7 @@ public abstract class Annotation {
      * @param start the new start
      */
     public void setStart(double start) {
-        _start = start;
+        this.start = start;
     }
 
     /**
@@ -75,7 +75,7 @@ public abstract class Annotation {
      * @param end the new end
      */
     public void setEnd(double end) {
-        _end = end;
+        this.end = end;
     }
 
     /**
@@ -84,7 +84,7 @@ public abstract class Annotation {
      * @param text the new label
      */
     public void setText(String text) {
-        _text = text;
+        this.text = text;
     }
 
     /**

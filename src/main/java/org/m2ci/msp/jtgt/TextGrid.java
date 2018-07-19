@@ -13,17 +13,17 @@ import java.util.ArrayList;
  */
 public class TextGrid {
     /** The list of tiers composing the textgrid */
-    private ArrayList<Tier> _tiers;
+    private ArrayList<Tier> tiers;
 
     /** Start of the textgrid */
-    private double _start;
+    private double start;
 
     /** End of the textgrid */
-    private double _end;
+    private double end;
 
     /** The filename associated with the textgrid */
     @Deprecated
-    private String _filename;
+    private String filename;
 
     /*********************************************************************************************
      ** Constructors
@@ -117,7 +117,7 @@ public class TextGrid {
      * @return the list of tiers
      */
     public ArrayList<Tier> getTiers() {
-        return _tiers;
+        return tiers;
     }
 
     /**
@@ -128,7 +128,7 @@ public class TextGrid {
      */
     @Deprecated
     public String getFilename() {
-        return _filename;
+        return filename;
     }
 
     /**
@@ -137,7 +137,7 @@ public class TextGrid {
      * @return the start time of the textgrid
      */
     public double getStart() {
-        return _start;
+        return start;
     }
 
     /**
@@ -146,7 +146,7 @@ public class TextGrid {
      * @return the end time of the textgrid
      */
     public double getEnd() {
-        return _end;
+        return end;
     }
 
     /**
@@ -155,7 +155,7 @@ public class TextGrid {
      * @param tiers the tiers which will compose the textgrid
      */
     public void setTiers(ArrayList<Tier> tiers) {
-        this._tiers = tiers;
+        this.tiers = tiers;
     }
 
     /**
@@ -166,7 +166,7 @@ public class TextGrid {
      */
     @Deprecated
     public void setFilename(String filename) {
-        this._filename = filename;
+        this.filename = filename;
     }
 
     /**
@@ -175,7 +175,7 @@ public class TextGrid {
      * @param start the start time of the textgrid
      */
     public void setStart(double start) {
-        this._start = start;
+        this.start = start;
     }
 
     /**
@@ -184,7 +184,7 @@ public class TextGrid {
      * @param end the end time of the textgrid
      */
     public void setEnd(double end) {
-        this._end = end;
+        this.end = end;
     }
 
     /*********************************************************************************************
