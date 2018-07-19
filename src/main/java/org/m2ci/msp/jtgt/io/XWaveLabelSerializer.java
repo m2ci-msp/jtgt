@@ -3,20 +3,11 @@ package org.m2ci.msp.jtgt.io;
 import org.m2ci.msp.jtgt.*;
 import org.m2ci.msp.jtgt.tier.*;
 import org.m2ci.msp.jtgt.annotation.*;
-import java.io.IOException;
-
-
-import java.io.File;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Arrays;
 
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
-import java.util.regex.MatchResult;
 
 /**
  *
