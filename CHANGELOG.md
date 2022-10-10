@@ -6,6 +6,7 @@ JTGT
 
 ### Changed
 
+- migrate from Travis CI to GitHub Actions
 - [all changes since v0.6.1]
 
 [v0.6.1] - 2018-07-19

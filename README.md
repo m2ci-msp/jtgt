@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/m2ci-msp/jtgt.svg?branch=master)](https://travis-ci.org/m2ci-msp/jtgt)
+[![CI](https://github.com/m2ci-msp/jtgt/actions/workflows/main.yml/badge.svg)](https://github.com/m2ci-msp/jtgt/actions/workflows/main.yml)
 [![Download](https://api.bintray.com/packages/m2ci-msp/maven/jtgt/images/download.svg)](https://bintray.com/m2ci-msp/maven/jtgt/_latestVersion)
 [![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
 
