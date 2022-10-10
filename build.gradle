@@ -58,6 +58,32 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
+            pom {
+                name = project.name
+                description = project.description
+                url = 'https://github.com/m2ci-msp/jtgt'
+                licenses {
+                    license {
+                        name = 'GNU Lesser General Public License v3.0 only'
+                        url = 'https://spdx.org/licenses/LGPL-3.0-only.html'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'seblemaguer'
+                        name = 'Sébastien Le Maguer'
+                    }
+                    developer {
+                        id = 'psibre'
+                        name = 'Ingmar Steiner'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/m2ci-msp/jtgt.git'
+                    developerConnection = 'scm:git:ssh://git@github.com:m2ci-msp/jtgt.git'
+                    url = 'https://github.com/m2ci-msp/jtgt'
+                }
+            }
         }
     }
     repositories {
