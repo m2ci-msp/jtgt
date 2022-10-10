@@ -4,6 +4,10 @@ JTGT
 [Unreleased]
 ------------
 
+### Added
+
+- testing on Java 8, 11, 17
+
 ### Changed
 
 - build with Gradle v7.5.1
