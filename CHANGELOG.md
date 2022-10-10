@@ -13,6 +13,7 @@ JTGT
 - build with Gradle v7.5.1
 - migrate from Travis CI to GitHub Actions
 - upgrade dependencies
+- change group ID to `io.github.m2ci-msp`
 - [all changes since v0.6.1]
 
 ### Removed

@@ -4,7 +4,7 @@ plugins {
 }
 
 version '0.7-SNAPSHOT'
-group "org.m2ci.msp"
+group "io.github.m2ci-msp"
 description "Java TextGridTools"
 
 java {
