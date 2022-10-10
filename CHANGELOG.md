@@ -4,10 +4,19 @@ JTGT
 [Unreleased]
 ------------
 
+### Added
+
+- testing on Java 8, 11, 17
+
 ### Changed
 
+- build with Gradle v7.5.1
 - migrate from Travis CI to GitHub Actions
 - [all changes since v0.6.1]
+
+### Removed
+
+- remove support for Java 7
 
 [v0.6.1] - 2018-07-19
 ---------------------
