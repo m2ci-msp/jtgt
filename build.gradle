@@ -90,14 +90,10 @@ publishing {
     }
     repositories {
         maven {
-            url "$rootProject.buildDir/repo"
-        }
-        maven {
-            url version.endsWith('-SNAPSHOT') ? 'https://oss.jfrog.org/artifactory/oss-snapshot-local' : 'https://api.bintray.com/maven/m2ci-msp/maven/jtgt'
-            credentials {
-                username = findProperty('bintrayUser')
-                password = findProperty('bintrayApiKey')
-            }
+            name 'OSSRH'
+            url isReleaseVersion ? 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2'
+                    : 'https://s01.oss.sonatype.org/content/repositories/snapshots'
+            credentials(PasswordCredentials)
         }
     }
 }
