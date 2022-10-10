@@ -1,11 +1,13 @@
 plugins {
     id 'java-library'
+    id 'signing'
     id 'maven-publish'
 }
 
 version '0.7-SNAPSHOT'
 group "io.github.m2ci-msp"
 description "Java TextGridTools"
+ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 java {
     toolchain {
@@ -98,4 +100,12 @@ publishing {
             }
         }
     }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}
+
+tasks.withType(Sign) {
+    onlyIf { isReleaseVersion }
 }
