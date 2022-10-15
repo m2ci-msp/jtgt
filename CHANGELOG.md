@@ -6,14 +6,15 @@ JTGT
 
 ### Added
 
-- testing on Java 8, 11, 17
+- Testing on Java 8, 11, 17
 
 ### Changed
 
-- build with Gradle v7.5.1
-- migrate from Travis CI to GitHub Actions
-- upgrade dependencies
-- change group ID to `io.github.m2ci-msp`
+- Building with Gradle v7.5.1
+- Migrated from Travis CI to GitHub Actions
+- Upgraded dependencies
+- Changed group ID to `io.github.m2ci-msp`
+- Migrated publishing/hosting from JCenter to Maven Central
 - [all changes since v0.6.1]
 
 ### Removed
