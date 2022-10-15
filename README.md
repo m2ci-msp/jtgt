@@ -1,5 +1,4 @@
 [![CI](https://github.com/m2ci-msp/jtgt/actions/workflows/main.yml/badge.svg)](https://github.com/m2ci-msp/jtgt/actions/workflows/main.yml)
-[![Download](https://api.bintray.com/packages/m2ci-msp/maven/jtgt/images/download.svg)](https://bintray.com/m2ci-msp/maven/jtgt/_latestVersion)
 [![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
 
 # JTGT
@@ -9,8 +8,8 @@ It's inspired by the [TextGridTools] module for Python.
 
 ## Dependency Information
 
-Release versions are [hosted on Bintray] and indexed in [JCenter].
-Snapshot builds are [hosted on OJO].
+Snapshot builds are [OSSRH].
+Release versions are hosted on [OSSRH] and indexed in [Maven Central].
 
 ## Examples
 
@@ -31,9 +30,8 @@ for (Annotation annot : tg.getTiers().get(0).getAnnotations()) {
 
 ## [Javadoc]
 
-[Praat]: http://praat.org/
+[Praat]: https://praat.org/
 [TextGridTools]: https://github.com/hbuschme/TextGridTools
-[hosted on Bintray]: https://bintray.com/m2ci-msp/maven/jtgt/_latestVersion
-[JCenter]: https://bintray.com/bintray/jcenter
-[hosted on OJO]: https://oss.jfrog.org/artifactory/webapp/#/artifacts/browse/tree/General/oss-snapshot-local/org/m2ci/msp/jtgt
+[OSSRH]: https://s01.oss.sonatype.org/
+[Maven Central]: https://search.maven.org/
 [Javadoc]: https://m2ci-msp.github.io/jtgt/docs/javadoc/
