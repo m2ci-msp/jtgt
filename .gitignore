@@ -6,6 +6,10 @@ build/
 .idea/
 *.iml
 
+# backup
+*.orig
+*~
+
 # OSX
 .DS_Store
 

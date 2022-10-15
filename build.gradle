@@ -1,11 +1,13 @@
 plugins {
     id 'java-library'
+    id 'signing'
     id 'maven-publish'
 }
 
 version '0.7-SNAPSHOT'
-group "org.m2ci.msp"
+group "io.github.m2ci-msp"
 description "Java TextGridTools"
+ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 java {
     toolchain {
@@ -58,18 +60,48 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
+            pom {
+                name = project.name
+                description = project.description
+                url = 'https://github.com/m2ci-msp/jtgt'
+                licenses {
+                    license {
+                        name = 'GNU Lesser General Public License v3.0 only'
+                        url = 'https://spdx.org/licenses/LGPL-3.0-only.html'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'seblemaguer'
+                        name = 'Sébastien Le Maguer'
+                    }
+                    developer {
+                        id = 'psibre'
+                        name = 'Ingmar Steiner'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/m2ci-msp/jtgt.git'
+                    developerConnection = 'scm:git:ssh://git@github.com:m2ci-msp/jtgt.git'
+                    url = 'https://github.com/m2ci-msp/jtgt'
+                }
+            }
         }
     }
     repositories {
         maven {
-            url "$rootProject.buildDir/repo"
-        }
-        maven {
-            url version.endsWith('-SNAPSHOT') ? 'https://oss.jfrog.org/artifactory/oss-snapshot-local' : 'https://api.bintray.com/maven/m2ci-msp/maven/jtgt'
-            credentials {
-                username = findProperty('bintrayUser')
-                password = findProperty('bintrayApiKey')
-            }
+            name 'NewOSSRH'
+            url isReleaseVersion ? 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2'
+                    : 'https://s01.oss.sonatype.org/content/repositories/snapshots'
+            credentials(PasswordCredentials)
         }
     }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}
+
+tasks.withType(Sign) {
+    onlyIf { isReleaseVersion }
 }
