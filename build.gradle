@@ -90,7 +90,7 @@ publishing {
     }
     repositories {
         maven {
-            name 'OSSRH'
+            name 'NewOSSRH'
             url isReleaseVersion ? 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2'
                     : 'https://s01.oss.sonatype.org/content/repositories/snapshots'
             credentials(PasswordCredentials)
