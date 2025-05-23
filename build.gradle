@@ -7,7 +7,6 @@ plugins {
 version = '0.8.0-SNAPSHOT'
 group = 'io.github.m2ci-msp'
 description = 'Java TextGridTools'
-ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 java {
     toolchain {
@@ -90,10 +89,7 @@ publishing {
     }
     repositories {
         maven {
-            name = 'NewOSSRH'
-            url = isReleaseVersion ? 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2'
-                    : 'https://s01.oss.sonatype.org/content/repositories/snapshots'
-            credentials(PasswordCredentials)
+            url = layout.buildDirectory.dir('repo')
         }
     }
 }
@@ -102,6 +98,6 @@ signing {
     sign publishing.publications.mavenJava
 }
 
-tasks.withType(Sign) {
-    onlyIf { isReleaseVersion }
+tasks.withType(Sign).configureEach {
+    onlyIf { !version.endsWith("SNAPSHOT") }
 }

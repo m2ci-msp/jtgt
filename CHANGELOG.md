@@ -4,6 +4,13 @@ JTGT
 [Unreleased]
 ------------
 
+### Changed
+
+- [all changes since v0.7.1]
+
+[v0.7.1] - 2025-05-23
+---------------------
+
 ### Added
 
 - Testing on Java 21
@@ -111,7 +118,9 @@ JTGT
 ### Initial release
 
 [Unreleased]: https://github.com/m2ci-msp/jtgt/tree/master
-[all changes since v0.7.0]: https://github.com/m2ci-msp/jtgt/compare/v0.7.0...HEAD
+[all changes since v0.7.1]: https://github.com/m2ci-msp/jtgt/compare/v0.7.1...HEAD
+[v0.7.1]: https://github.com/m2ci-msp/jtgt/releases/tag/v0.7.1
+[all changes since v0.7.0]: https://github.com/m2ci-msp/jtgt/compare/v0.7.0...v0.7.1
 [v0.7.0]: https://github.com/m2ci-msp/jtgt/releases/tag/v0.7.0
 [all changes since v0.6.1]: https://github.com/m2ci-msp/jtgt/compare/v0.6.1...v0.7.0
 [v0.6.1]: https://github.com/m2ci-msp/jtgt/releases/tag/v0.6.1
