@@ -1,7 +1,7 @@
 [versions]
 commons-io = "2.19.0"
 commons-lang3 = "3.17.0"
-json = "20220924"
+json = "20250517"
 testng = "7.5"
 
 [libraries]
