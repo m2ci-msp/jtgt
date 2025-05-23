@@ -7,11 +7,6 @@
 JTGT is a Java library for loading, manipulating, and writing [Praat] TextGrid files, and similar annotation files, such as XWaves lab.
 It's inspired by the [TextGridTools] module for Python.
 
-## Dependency Information
-
-Snapshot builds are [OSSRH].
-Release versions are hosted on [OSSRH] and indexed in [Maven Central].
-
 ## Examples
 
 ### Loading a TextGrid file
@@ -33,6 +28,4 @@ for (Annotation annot : tg.getTiers().get(0).getAnnotations()) {
 
 [Praat]: https://praat.org/
 [TextGridTools]: https://github.com/hbuschme/TextGridTools
-[OSSRH]: https://s01.oss.sonatype.org/
-[Maven Central]: https://search.maven.org/
 [Javadoc]: https://m2ci-msp.github.io/jtgt/docs/javadoc/
