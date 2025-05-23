@@ -2,7 +2,7 @@
 commons-io = "2.19.0"
 commons-lang3 = "3.17.0"
 json = "20250517"
-testng = "7.5"
+testng = "7.5.1"
 
 [libraries]
 commons-io = { group = "commons-io", name = "commons-io", version.ref = "commons-io" }
