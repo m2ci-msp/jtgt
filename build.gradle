@@ -4,7 +4,7 @@ plugins {
     id 'maven-publish'
 }
 
-version = '0.7.1'
+version = '0.8.0-SNAPSHOT'
 group = 'io.github.m2ci-msp'
 description = 'Java TextGridTools'
 
