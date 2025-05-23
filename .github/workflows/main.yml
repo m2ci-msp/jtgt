@@ -21,6 +21,6 @@ jobs:
           distribution: zulu
           java-version: ${{ matrix.java }}
 
-      - uses: gradle/gradle-build-action@v2
-        with:
-          arguments: build
+      - uses: gradle/actions/setup-gradle@v4.4.0
+
+      - run: ./gradlew build --warning-mode all
