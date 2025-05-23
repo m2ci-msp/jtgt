@@ -4,8 +4,18 @@ JTGT
 [Unreleased]
 ------------
 
+### Added
+
+- Testing on Java 21
+
+### Removed
+
+- Testing on Java 8 and 11
+
 ### Changed
 
+- Build with Gradle v8.14.1
+- Upgraded dependencies
 - [all changes since v0.7.0]
 
 [v0.7.0] - 2022-10-15

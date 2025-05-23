@@ -1,0 +1,11 @@
+[versions]
+commons-io = "2.19.0"
+commons-lang3 = "3.17.0"
+json = "20250517"
+testng = "7.5.1"
+
+[libraries]
+commons-io = { group = "commons-io", name = "commons-io", version.ref = "commons-io" }
+commons-lang3 = { group = "org.apache.commons", name = "commons-lang3", version.ref = "commons-lang3" }
+json = { group = "org.json", name = "json", version.ref = "json" }
+testng = { group = "org.testng", name = "testng", version.ref = "testng" }
