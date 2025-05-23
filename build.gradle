@@ -4,9 +4,9 @@ plugins {
     id 'maven-publish'
 }
 
-version '0.8.0-SNAPSHOT'
-group "io.github.m2ci-msp"
-description "Java TextGridTools"
+version = '0.8.0-SNAPSHOT'
+group = 'io.github.m2ci-msp'
+description = 'Java TextGridTools'
 ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 java {
@@ -90,8 +90,8 @@ publishing {
     }
     repositories {
         maven {
-            name 'NewOSSRH'
-            url isReleaseVersion ? 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2'
+            name = 'NewOSSRH'
+            url = isReleaseVersion ? 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2'
                     : 'https://s01.oss.sonatype.org/content/repositories/snapshots'
             credentials(PasswordCredentials)
         }
