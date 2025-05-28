@@ -1,6 +1,6 @@
 [![CI](https://github.com/m2ci-msp/jtgt/actions/workflows/main.yml/badge.svg)](https://github.com/m2ci-msp/jtgt/actions/workflows/main.yml)
 [![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.m2ci-msp/jtgt/badge.svg)](https://mvnrepository.com/artifact/io.github.m2ci-msp/jtgt)
+[![Maven Central](https://maven-badges.sml.io/sonatype-central/io.github.m2ci-msp/jtgt/badge.svg)](https://central.sonatype.com/artifact/io.github.m2ci-msp/jtgt)
 
 # JTGT
 
